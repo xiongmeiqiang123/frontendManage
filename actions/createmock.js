@@ -14,8 +14,14 @@ module.exports = function(req, res, next) {
 		type
 	} = params;
 
+	let _url = url.split('?')[0];
+
+	if(!url.match(/^\//)) { //如果不是以 / 开头则加上
+		_url = '/' + _url;
+	}
+
 	let routes = type === 'GET' ? getRoutes: postRoutes;
-	writeRoute(type, url, routes, data, (err, result) => {
+	writeRoute(type, _url, routes, data, (err, result) => {
 		if(err) {
 			res.send({
 				status: false,
@@ -38,7 +44,7 @@ function writeRoute(type = 'GET', url, routes = {}, data = {}, callback) {
 		data: name
 	};
 
-	fs.writeFile(path.join(__dirname, '../route/' + (type === 'GET' ? 'get' : 'post') + '.json'), JSON.stringify(routes), (err, result) => {
+	fs.writeFile(path.join(__dirname, '../route/' + (type === 'GET' ? 'get' : 'post') + '.json'), JSON.stringify(routes,null, 4), (err, result) => {
 		if (err) {
 			callback(err, result);
 			return;
