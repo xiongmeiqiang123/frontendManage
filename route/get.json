@@ -382,5 +382,26 @@
     },
     "/mqsas/call/disconnected/getDistributeByNetAndModel.do": {
         "data": "mqsascalldisconnectedgetdistributebynetandmodeldo"
+    },
+    "/mqsas/getAllModelList.do": {
+        "data": "mqsasgetallmodellistdo"
+    },
+    "/mqsas/partition/getVersions.do": {
+        "data": "mqsaspartitiongetversionsdo"
+    },
+    "/mqsas/partition/utilizationRate.do": {
+        "data": "mqsaspartitionutilizationratedo"
+    },
+    "/mqsas/partition/fileCount/trend.do": {
+        "data": "mqsaspartitionfilecounttrenddo"
+    },
+    "/mqsas/partition/occupationRate/trend.do": {
+        "data": "mqsaspartitionoccupationratetrenddo"
+    },
+    "/mqsas/partition/getPkns.do": {
+        "data": "mqsaspartitiongetpknsdo"
+    },
+    "/mqsas/partition/occupationRate/rank.do": {
+        "data": "mqsaspartitionoccupationraterankdo"
     }
 }
