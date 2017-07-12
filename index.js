@@ -92,6 +92,12 @@ const Mock = require('mockjs'),
 		res.status(302).send({})
 	})
 
+
+	// app.get('/restart', function (req, res, next) {
+	//   process.exit(1);
+	// });
+
+
 	app.ws('/mqsas/test2', function(ws, req) {
 	  ws.on('message', function(msg) {
 	    console.log(msg);

@@ -129,7 +129,7 @@
         "data": "catonAppGetCause"
     },
     "/mqsas/performance/getModelFluencyRank.do": {
-        "data": "getModelFluencyRank"
+        "data": "mqsasperformancegetmodelfluencyrankdo"
     },
     "/mqsas/performance/dropFrame/cmpPercent.do": {
         "data": "cmpPercent"
@@ -403,5 +403,62 @@
     },
     "/mqsas/partition/occupationRate/rank.do": {
         "data": "mqsaspartitionoccupationraterankdo"
+    },
+    "/mqsas/wlan/dev/getRsnRate.do": {
+        "data": "mqsaswlandevgetrsnratedo"
+    },
+    "/mqsas/wlan/mac/getRsnRate.do": {
+        "data": "mqsaswlanmacgetrsnratedo"
+    },
+    "/mqsas/wlan/mac/getNewDevices.do": {
+        "data": "mqsaswlanmacgetnewdevicesdo"
+    },
+    "/mqsas/wlan/mac/getNewVersions.do": {
+        "data": "mqsaswlanmacgetnewversionsdo"
+    },
+    "/mqsas/wlan/dev/getNewDevices.do": {
+        "data": "mqsaswlandevgetnewdevicesdo"
+    },
+    "/mqsas/wlan/dev/getNewVersions.do": {
+        "data": "mqsaswlandevgetnewversionsdo"
+    },
+    "/mqsas/wlan/mac/getMacs.do": {
+        "data": "mqsaswlanmacgetmacsdo"
+    },
+    "/mqsas/wlan/dev/getNewDeviceRate.do": {
+        "data": "mqsaswlandevgetnewdeviceratedo"
+    },
+    "/mqsas/exp/stability/summary/apps.do": {
+        "data": "mqsasexpstabilitysummaryappsdo"
+    },
+    "/mqsas/catonAppDistribution/getModels.do": {
+        "data": "mqsascatonappdistributiongetmodelsdo"
+    },
+    "/mqsas/appCatonMonitor/getPkns.do": {
+        "data": "mqsasappcatonmonitorgetpknsdo"
+    },
+    "/mqsas/appCatonMonitor/getModelsByPknAndType.do": {
+        "data": "mqsasappcatonmonitorgetmodelsbypknandtypedo"
+    },
+    "/mqsas/catonAppDistribution/getCatonCountDistribution.do": {
+        "data": "mqsascatonappdistributiongetcatoncountdistributiondo"
+    },
+    "/mqsas/catonAppDistribution/getCatonTimeDistribution.do": {
+        "data": "mqsascatonappdistributiongetcatontimedistributiondo"
+    },
+    "/mqsas/catonAppDistribution/getVersionByModel.do": {
+        "data": "mqsascatonappdistributiongetversionbymodeldo"
+    },
+    "/mqsas/appMonitor/getMonitorData.do": {
+        "data": "mqsasappmonitorgetmonitordatado"
+    },
+    "/mqsas/appMonitor/getPkn.do": {
+        "data": "mqsasappmonitorgetpkndo"
+    },
+    "/mqsas/exp/stability/summary/app/topCase.do": {
+        "data": "mqsasexpstabilitysummaryapptopcasedo"
+    },
+    "/mqsas/exp/stability/getPkns.do": {
+        "data": "mqsasexpstabilitygetpknsdo"
     }
 }
