@@ -34,7 +34,9 @@ module.exports = function(req, res, next) {
 			status: true,
 			message: '创建成功'
 		})
-		process.exit(1);
+		setTimeout(function () {
+			process.exit(1);
+		})
 	})
 }
 

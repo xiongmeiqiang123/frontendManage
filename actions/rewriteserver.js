@@ -39,6 +39,7 @@ function  assemble(servers=[], using="mqsas") {
 server {
 	listen ${server.listen};
 	server_name  localhost www.localhost admin www.admin;
+	proxy_set_header backdoor sys; 
 
 	${
 		locations.map((location)=>{//locations解析
