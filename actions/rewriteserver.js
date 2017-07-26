@@ -21,10 +21,11 @@ let servers = [
 					localhost: 'http://127.0.0.1:3001',
 					linlin: 'http://10.232.33.23:8082',
 					mqsas: 'http://sys.pt.miui.com',
-					zhicai: 'http://10.232.32.7:8082',
+					zhicai: 'http://10.232.32.30:8082',
 					anqi: 'http://10.232.39.18:8082',
 					dawei: 'http://10.232.33.44:8088',
-					liuyilan: 'http://10.232.33.8:8082'
+					liuyilan: 'http://10.232.33.8:8082',
+					wangbin: 'http://10.232.33.42:8082',
 				}
 			}
 		]
@@ -39,7 +40,7 @@ function  assemble(servers=[], using="mqsas") {
 server {
 	listen ${server.listen};
 	server_name  localhost www.localhost admin www.admin;
-	proxy_set_header backdoor sys; 
+	proxy_set_header backdoor sys;
 
 	${
 		locations.map((location)=>{//locations解析
