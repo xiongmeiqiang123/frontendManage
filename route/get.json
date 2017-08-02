@@ -460,5 +460,83 @@
     },
     "/mqsas/exp/stability/getPkns.do": {
         "data": "mqsasexpstabilitygetpknsdo"
+    },
+    "/mqsas/getModels": {
+        "data": "mqsasgetmodels"
+    },
+    "/mqsas/getVersions": {
+        "data": "mqsasgetversions"
+    },
+    "/mqsasdata/getVersionByModels.do": {
+        "data": "mqsasdatagetversionbymodelsdo"
+    },
+    "/mqsas/appCatonAnalysis/getPkns.do": {
+        "data": "mqsasappcatonanalysisgetpknsdo"
+    },
+    "/mqsas/appCatonAnalysis/getModelByPkn.do": {
+        "data": "mqsasappcatonanalysisgetmodelbypkndo"
+    },
+    "/mqsas/appCatonAnalysis/getVersionByModelAndType.do": {
+        "data": "mqsasappcatonanalysisgetversionbymodelandtypedo"
+    },
+    "/mqsas/excp/littleVersionList.do": {
+        "data": "mqsasexcplittleversionlistdo"
+    },
+    "/mqsas/appCatonAnalysis/getWindowPerformance.do": {
+        "data": "mqsasappcatonanalysisgetwindowperformancedo"
+    },
+    "/mqsas/excp/getVersionByModelAndReleaseType.do": {
+        "data": "mqsasexcpgetversionbymodelandreleasetypedo"
+    },
+    "/mqsas/excp/getNewModels.do": {
+        "data": "mqsasexcpgetnewmodelsdo"
+    },
+    "/mqsas/caton/factor/category.do": {
+        "data": "mqsascatonfactorcategorydo"
+    },
+    "/mqsas/caton/cause/expTy/app.do": {
+        "data": "mqsascatoncauseexptyappdo"
+    },
+    "/mqsas/appCatonAnalysis/getAppCausePerformance.do": {
+        "data": "mqsasappcatonanalysisgetappcauseperformancedo"
+    },
+    "/mqsas/testModels.do": {
+        "data": "mqsastestmodelsdo"
+    },
+    "/mqsas/jenkins/getOwnerCurrentTask2.do": {
+        "data": "mqsasjenkinsgetownercurrenttask2do"
+    },
+    "/mqsas/wlan/mac/getIes.do": {
+        "data": "mqsaswlanmacgetiesdo"
+    },
+    "/mqsas/sysopt/coldStart/listModel.do": {
+        "data": "mqsassysoptcoldstartlistmodeldo"
+    },
+    "/mqsas/sysopt/coldStart/coldStartTrend.do": {
+        "data": "mqsassysoptcoldstartcoldstarttrenddo"
+    },
+    "/mqsas/sysopt/coldStart/listPkg.do": {
+        "data": "mqsassysoptcoldstartlistpkgdo"
+    },
+    "/mqsas/sysopt/coldStart/coldStartDetail.do": {
+        "data": "mqsassysoptcoldstartcoldstartdetaildo"
+    },
+    "/mqsas/ota/getModels.do": {
+        "data": "mqsasotagetmodelsdo"
+    },
+    "/mqsas/ota/getPreVsByType.do": {
+        "data": "mqsasotagetprevsbytypedo"
+    },
+    "/mqsas/ota/getAfterVsByTypeModel.do": {
+        "data": "mqsasotagetaftervsbytypemodeldo"
+    },
+    "/mqsas/ota/getAfterVsByPreV.do": {
+        "data": "mqsasotagetaftervsbyprevdo"
+    },
+    "/mqsas/ota/getUpdateRateByVersion.do": {
+        "data": "mqsasotagetupdateratebyversiondo"
+    },
+    "/mqsas/ota/analysis/updateTime.do": {
+        "data": "mqsasotaanalysisupdatetimedo"
     }
 }

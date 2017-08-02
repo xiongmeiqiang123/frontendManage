@@ -27,6 +27,8 @@
 		{value:'dawei', name: '蔡大伟'},
 		{value:'zhangyang', name: '张阳'},
 		{value:'wangbin', name: '王斌'},
+		{value:'test', name: '测试服务器'},
+		{value:'preview', name: 'preview服务器'},
 	]
 
 	export default {

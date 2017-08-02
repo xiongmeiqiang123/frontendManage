@@ -21,6 +21,8 @@ let servers = [
 					localhost: 'http://127.0.0.1:3001',
 					linlin: 'http://10.232.33.23:8082',
 					mqsas: 'http://sys.pt.miui.com',
+					test: 'http://test.sys.pt.miui.com',
+					preview: 'http://preview.sys.pt.miui.com',
 					zhicai: 'http://10.232.32.30:8082',
 					anqi: 'http://10.232.39.18:8082',
 					dawei: 'http://10.232.33.44:8088',
