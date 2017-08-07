@@ -28,6 +28,7 @@ let servers = [
 					dawei: 'http://10.232.33.44:8088',
 					liuyilan: 'http://10.232.33.8:8082',
 					wangbin: 'http://10.232.33.42:8082',
+					maqihao: 'http://10.232.39.16:8082',
 				}
 			}
 		]

@@ -538,5 +538,35 @@
     },
     "/mqsas/ota/analysis/updateTime.do": {
         "data": "mqsasotaanalysisupdatetimedo"
+    },
+    "/mqsas/bluetooth/exception/enable/deviceRate.do": {
+        "data": "mqsasbluetoothexceptionenabledeviceratedo"
+    },
+    "/mqsas/bluetooth/exception/getVersions.do": {
+        "data": "mqsasbluetoothexceptiongetversionsdo"
+    },
+    "/mqsas/bluetooth/exception/enable/deviceRateTrend.do": {
+        "data": "mqsasbluetoothexceptionenabledeviceratetrenddo"
+    },
+    "/mqsas/bluetooth/exception/conn/deviceRateTrend.do": {
+        "data": "mqsasbluetoothexceptionconndeviceratetrenddo"
+    },
+    "/mqsas/bluetooth/exception/conn/BluetoothNameRate.do": {
+        "data": "mqsasbluetoothexceptionconnbluetoothnameratedo"
+    },
+    "/mqsas/bluetooth/exception/conn/BluetoothCategoryRate.do": {
+        "data": "mqsasbluetoothexceptionconnbluetoothcategoryratedo"
+    },
+    "/mqsas/bluetooth/exception/devinfo/BluetoothNameRate.do": {
+        "data": "mqsasbluetoothexceptiondevinfobluetoothnameratedo"
+    },
+    "/mqsas/bluetooth/exception/devinfo/BluetoothCategoryRate.do": {
+        "data": "mqsasbluetoothexceptiondevinfobluetoothcategoryratedo"
+    },
+    "/mqsas/excp/dashboard/installExp.do": {
+        "data": "mqsasexcpdashboardinstallexpdo"
+    },
+    "/mqsas/boot/event/getCompareStartTimes.do": {
+        "data": "mqsasbooteventgetcomparestarttimesdo"
     }
 }
