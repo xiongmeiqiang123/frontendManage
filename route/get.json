@@ -165,7 +165,7 @@
         "data": "allVersion"
     },
     "/mqsas/fluency/getFluencyByVersion.do": {
-        "data": "getFluencyByVersion"
+        "data": "mqsasfluencygetfluencybyversiondo"
     },
     "/mqsas/fluency/getFluencyByModel.do": {
         "data": "mqsasfluencygetfluencybymodeldo"
@@ -177,7 +177,7 @@
         "data": "getPkns"
     },
     "/mqsas/excp/dashboard/category.do": {
-        "data": "category"
+        "data": "mqsasexcpdashboardcategorydo"
     },
     "/mqsasdata/getUsefullVersion.do": {
         "data": "getUsefullVersion"
@@ -568,5 +568,227 @@
     },
     "/mqsas/boot/event/getCompareStartTimes.do": {
         "data": "mqsasbooteventgetcomparestarttimesdo"
+    },
+    "/mqsas/excp/dashboard/category​.do": {
+        "data": "mqsasexcpdashboardcategory​do"
+    },
+    "/mqsas/excp/dashboard/category%E2%80%8B.do": {
+        "data": "mqsasexcpdashboardcategory%e2%80%8bdo"
+    },
+    "/mqsas/exp/stability/snapshot/getVersions.do": {
+        "data": "mqsasexpstabilitysnapshotgetversionsdo"
+    },
+    "/mqsas/exp/stability/snapshot/getData.do": {
+        "data": "mqsasexpstabilitysnapshotgetdatado"
+    },
+    "/mqsas/exp/stability/snapshot/getCategorys.do": {
+        "data": "mqsasexpstabilitysnapshotgetcategorysdo"
+    },
+    "/mqsas/sysCatonAnalysis/getModels.do": {
+        "data": "mqsassyscatonanalysisgetmodelsdo"
+    },
+    "/mqsas/sysCatonAnalysis/getANR.do": {
+        "data": "mqsassyscatonanalysisgetanrdo"
+    },
+    "/mqsas/sysCatonAnalysis/getCatonFactor.do": {
+        "data": "mqsassyscatonanalysisgetcatonfactordo"
+    },
+    "/mqsas/sysCatonAnalysis/getCatonData.do": {
+        "data": "mqsassyscatonanalysisgetcatondatado"
+    },
+    "/mqsas/sysCatonAnalysis/getCatonDistribution.do": {
+        "data": "mqsassyscatonanalysisgetcatondistributiondo"
+    },
+    "/mqsas/ota/trend/overview.do": {
+        "data": "mqsasotatrendoverviewdo"
+    },
+    "/mqsas/ota/trend/failCount/getModels.do": {
+        "data": "mqsasotatrendfailcountgetmodelsdo"
+    },
+    "/mqsas/ota/trend/updateTime/getModels.do": {
+        "data": "mqsasotatrendupdatetimegetmodelsdo"
+    },
+    "/mqsas/ota/getSucRateTrend.do": {
+        "data": "mqsasotagetsucratetrenddo"
+    },
+    "/mqsas/ota/trend/failCount.do": {
+        "data": "mqsasotatrendfailcountdo"
+    },
+    "/mqsas/ota/trend/updateTime.do": {
+        "data": "mqsasotatrendupdatetimedo"
+    },
+    "/mqsas/ota/fail/basedVersion.do": {
+        "data": "mqsasotafailbasedversiondo"
+    },
+    "/mqsas/ota/fail/basedModel.do": {
+        "data": "mqsasotafailbasedmodeldo"
+    },
+    "/mqsas/ota/errortype/basedModel.do": {
+        "data": "mqsasotaerrortypebasedmodeldo"
+    },
+    "/mqsas/ota/errortype/getModel.do": {
+        "data": "mqsasotaerrortypegetmodeldo"
+    },
+    "/mqsas/ota/fail/basedModel/detail.do": {
+        "data": "mqsasotafailbasedmodeldetaildo"
+    },
+    "/mqsas/ota/errortype/singleModelTrend.do": {
+        "data": "mqsasotaerrortypesinglemodeltrenddo"
+    },
+    "/mqsas/new/call/disconnected/getModels.do": {
+        "data": "mqsasnewcalldisconnectedgetmodelsdo"
+    },
+    "/mqsas/new/call/disconnected/getVersions.do": {
+        "data": "mqsasnewcalldisconnectedgetversionsdo"
+    },
+    "/mqsas/new/call/disconnected/getCities.do": {
+        "data": "mqsasnewcalldisconnectedgetcitiesdo"
+    },
+    "/mqsas/new/call/disconnected/distributionByModelVersion.do": {
+        "data": "mqsasnewcalldisconnecteddistributionbymodelversiondo"
+    },
+    "/mqsas/new/call/disconnected/getRats.do": {
+        "data": "mqsasnewcalldisconnectedgetratsdo"
+    },
+    "/myDeviceClound/getList.do": {
+        "data": "mydevicecloundgetlistdo"
+    },
+    "/myDeviceClound/getRedDotSwitch.do": {
+        "data": "mydevicecloundgetreddotswitchdo"
+    },
+    "/mqsas/sysCatonAnalysis/getAppTop.do": {
+        "data": "mqsassyscatonanalysisgetapptopdo"
+    },
+    "/mqsas/new/call/disconnected/getTopStatistics.do": {
+        "data": "mqsasnewcalldisconnectedgettopstatisticsdo"
+    },
+    "/myDeviceCloundNew/getList.do": {
+        "data": "mydevicecloundnewgetlistdo"
+    },
+    "/mqsas/new/call/disconnected/getSignalStrengths.do": {
+        "data": "mqsasnewcalldisconnectedgetsignalstrengthsdo"
+    },
+    "/mqsas/new/call/disconnected/getSignalQualitys.do": {
+        "data": "mqsasnewcalldisconnectedgetsignalqualitysdo"
+    },
+    "/mqsas/new/call/disconnected/getPieStatistics.do": {
+        "data": "mqsasnewcalldisconnectedgetpiestatisticsdo"
+    },
+    "/mqsas/myDeviceCloundNew/getList.do": {
+        "data": "mqsasmydevicecloundnewgetlistdo"
+    },
+    "/mqsas/myDeviceCloundNew/preview.do": {
+        "data": "mqsasmydevicecloundnewpreviewdo"
+    },
+    "/mqsas/myDeviceCloundNew/icon/getList.do": {
+        "data": "mqsasmydevicecloundnewicongetlistdo"
+    },
+    "/mqsas/myDeviceCloundNew/getUseImei.do": {
+        "data": "mqsasmydevicecloundnewgetuseimeido"
+    },
+    "/mqsas/getAllLimitNumber.do": {
+        "data": "mqsasgetalllimitnumberdo"
+    },
+    "/mqsas/autoCrawl/getAllConfig.do": {
+        "data": "mqsasautocrawlgetallconfigdo"
+    },
+    "/mqsas/autoCrawl/getPkns.do": {
+        "data": "mqsasautocrawlgetpknsdo"
+    },
+    "/mqsas/autoCrawl/config/ruleList.do": {
+        "data": "mqsasautocrawlconfigrulelistdo"
+    },
+    "/mqsas/new/call/disconnected/getNetworks.do": {
+        "data": "mqsasnewcalldisconnectedgetnetworksdo"
+    },
+    "/mqsas/new/call/disconnected/getReasons.do": {
+        "data": "mqsasnewcalldisconnectedgetreasonsdo"
+    },
+    "/mqsas/wlan/mac/getIeMacNameRate.do": {
+        "data": "mqsaswlanmacgetiemacnameratedo"
+    },
+    "/mqsas/wlan/mac/getIeMacRate.do": {
+        "data": "mqsaswlanmacgetiemacratedo"
+    },
+    "/mqsas/wlan/mac/getIeVendorRate.do": {
+        "data": "mqsaswlanmacgetievendorratedo"
+    },
+    "/whiteList/updateStatus.do": {
+        "data": "whitelistupdatestatusdo"
+    },
+    "/mqsas/new/call/disconnected/getCellLocations.do": {
+        "data": "mqsasnewcalldisconnectedgetcelllocationsdo"
+    },
+    "/mqsas/screenon/trend/timeout.do": {
+        "data": "mqsasscreenontrendtimeoutdo"
+    },
+    "/mqsas/screenon/trend.do": {
+        "data": "mqsasscreenontrenddo"
+    },
+    "/mqsas/procMemOccupation/getModelMemoryInfo.do": {
+        "data": "mqsasprocmemoccupationgetmodelmemoryinfodo"
+    },
+    "/mqsas/procMemOccupation/getAllModels.do": {
+        "data": "mqsasprocmemoccupationgetallmodelsdo"
+    },
+    "/mqsas/procMemOccupation/getPkns.do": {
+        "data": "mqsasprocmemoccupationgetpknsdo"
+    },
+    "/{     \"data\": [         \"com.miui.home\"     ],     \"status\": \"true\" }": {
+        "data": "{     \"data\": [         \"commiuihome\"     ],     \"status\": \"true\" }"
+    },
+    "/mqsas/procMemOccupation/getPrns.do": {
+        "data": "mqsasprocmemoccupationgetprnsdo"
+    },
+    "/mqsas/procMemOccupation/getPrnMemoryInfo.do": {
+        "data": "mqsasprocmemoccupationgetprnmemoryinfodo"
+    },
+    "/mqsas/procMemOccupation/getPrnTimeInfo.do": {
+        "data": "mqsasprocmemoccupationgetprntimeinfodo"
+    },
+    "/mqsas/procMemOccupation/getMemAvgRank.do": {
+        "data": "mqsasprocmemoccupationgetmemavgrankdo"
+    },
+    "/whiteList/add.do": {
+        "data": "whitelistadddo"
+    },
+    "/mqsas/new/call/disconnected/getIndexChart.do": {
+        "data": "mqsasnewcalldisconnectedgetindexchartdo"
+    },
+    "/mqsas/excp/dashboard/anrStack/topkcases.do": {
+        "data": "mqsasexcpdashboardanrstacktopkcasesdo"
+    },
+    "/whiteList/delete.do": {
+        "data": "whitelistdeletedo"
+    },
+    "/whiteList/update.do": {
+        "data": "whitelistupdatedo"
+    },
+    "/mqsas/getRules": {
+        "data": "mqsasgetrules"
+    },
+    "/mqsas/userCenter/getUserSubscriptionInfo.do": {
+        "data": "mqsasusercentergetusersubscriptioninfodo"
+    },
+    "/mqsas/userCenterSubsribe/getUserSubscription.do": {
+        "data": "mqsasusercentersubsribegetusersubscriptiondo"
+    },
+    "/knowledge/AnalyzeUrlFile.do": {
+        "data": "knowledgeanalyzeurlfiledo"
+    },
+    "/mqsas/wlan/mac/getNewIeDevices.do": {
+        "data": "mqsaswlanmacgetnewiedevicesdo"
+    },
+    "/mqsas/wlan/mac/getNewIeVersions.do": {
+        "data": "mqsaswlanmacgetnewieversionsdo"
+    },
+    "/mqsas/exp/stability/snapshot/getAppVersions.do": {
+        "data": "mqsasexpstabilitysnapshotgetappversionsdo"
+    },
+    "/mqsas/userCenter/appTrend/getANRTopKData.do": {
+        "data": "mqsasusercenterapptrendgetanrtopkdatado"
+    },
+    "/mqsas/userCenter/appTrend/getFCData.do": {
+        "data": "mqsasusercenterapptrendgetfcdatado"
     }
 }

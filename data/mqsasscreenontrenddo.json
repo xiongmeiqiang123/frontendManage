@@ -1,0 +1,1 @@
+{"data":[{"MI5(gemini)":"0.0361","MI5(gemini)-attach":{"total":"377256 ms","display":"13611 ms","block":"131 ms","count":"908"},"index":"7.3.2"},{"MI4LTE(cancro)":"0.0346","MI4LTE(cancro)-attach":{"total":"377256 ms","display":"13611 ms","block":"131 ms","count":"908"},"index":"7.3.6"}],"indexes":["MI5(gemini)","MI4LTE(cancro)"],"status":"true"}

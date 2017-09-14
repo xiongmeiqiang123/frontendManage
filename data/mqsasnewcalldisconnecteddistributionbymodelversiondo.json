@@ -1,0 +1,1 @@
+{"status":"true","data":[{"index":"2017-08-09","7.8.9,7.8.11":0.2409,"7.8.9,7.8.11-attach":{"disconnCount":1066,"disconnTotalCount":4426}},{"index":"2017-08-10","7.8.10":0.231,"7.8.10-attach":{"disconnCount":409,"disconnTotalCount":1771},"7.8.9":0.2325,"7.8.9-attach":{"disconnCount":6236,"disconnTotalCount":26822}}],"indexes":["7.8.9,7.8.11","7.8.10"]}

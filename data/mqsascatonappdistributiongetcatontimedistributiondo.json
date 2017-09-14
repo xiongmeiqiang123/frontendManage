@@ -1,1 +1,1 @@
-{"data":{"timeMiui":{},"timeAll":{"com.android.incallui":10328.865,"com.android.mms":9925.877,"com.miui.gallery":13879.31,"com.android.browser":23886.302,"other":60593.379,"com.miui.home":40804.35,"com.sohu.inputmethod.sogou.xiaomi":17288.63,"com.tencent.mm":201139.188,"com.android.settings":9583.466,"com.android.systemui":249131.346,"com.android.contacts":11696.773}},"status":"true"}
+{"data":{"timeMiui":[{"time":44616.576,"name":"com.android.incallu","value":23}],"timeAll":[{"time":44616.576,"name":"com.android.incallu","value":23}]},"status":"true"}

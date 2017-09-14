@@ -1,0 +1,1 @@
+{"data":[{"name":"Watchdog","value":"Watchdog"},{"name":"SystemServer_JavaCrash","value":"SS-JE"},{"name":"SystemServer_NativeCrash","value":"SS-NE"},{"name":"Zygote_NativeCrash","value":"Zygote-NE"},{"name":"Zygote64_NativeCrash","value":"Zygote64-NE"}],"status":"true"}

@@ -13,7 +13,7 @@ let servers = [
 				path: '/',
 				proxy_pass: 'http://127.0.0.1:3000'
 			},{
-				path: '~ ^/(mqsas|mqsasdata|mqsasABTest|knowledge|whiteList|mqsasback|test1|myDeviceClound)/',
+				path: '~ ^/(myDeviceCloundNew|mqsas|mqsasdata|mqsasABTest|knowledge|whiteList|mqsasback|test1|myDeviceClound)/',
 				using: 'mqsas',//
 				proxy_passes: {
 					zhangyang: 'http://10.232.39.9:8082',
