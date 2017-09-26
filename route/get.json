@@ -790,5 +790,11 @@
     },
     "/mqsas/userCenter/appTrend/getFCData.do": {
         "data": "mqsasusercenterapptrendgetfcdatado"
+    },
+    "/mqsas/userCenter/performanceTrend/getStartTime.do": {
+        "data": "mqsasusercenterperformancetrendgetstarttimedo"
+    },
+    "/mqsas/userCenter/getUserSubscriptionPkns.do": {
+        "data": "mqsasusercentergetusersubscriptionpknsdo"
     }
 }

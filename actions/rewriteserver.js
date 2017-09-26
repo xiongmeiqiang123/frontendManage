@@ -2,8 +2,8 @@ var fs = require('fs');
 var shell = require('shelljs');
 var colors = require('../conf/colors')
 
-let restart = 'echo lanshan123 | sudo -S nginx -s reload',
-	open = 'echo lanshan123 | sudo -S nginx'
+let restart = ' nginx -s reload',
+	open = 'sudo -S nginx'
 
 let servers = [
 	{
