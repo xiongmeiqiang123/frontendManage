@@ -3,7 +3,7 @@ var shell = require('shelljs');
 var colors = require('../conf/colors')
 
 let restart = ' nginx -s reload',
-	open = 'sudo -S nginx'
+	open = 'nginx'
 
 let servers = [
 	{
