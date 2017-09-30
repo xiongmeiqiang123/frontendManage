@@ -7,7 +7,7 @@ const webpack = require('webpack'),
 const config =  {
 	devtool:'cheap-module-eval-source-map',
 	entry: {
-		main: './front/index.js'
+		main: './views/index.js'
 	},
 	output: {
         path: path.join(__dirname, './dist'),
@@ -16,8 +16,8 @@ const config =  {
     plugins: [
     	new WebpackMd5Hash(),
     	new HtmlWebpackPlugin({
-            template: './front/index.html',
-            favicon: './front/static/favicon.ico'
+            template: './views/index.html',
+            favicon: './views/static/favicon.ico'
     	})
     ],
     resolve: {
