@@ -14,7 +14,7 @@ server {
 	location  ~ ^/(myDeviceCloundNew|mqsas|mqsasdata|mqsasABTest|knowledge|whiteList|mqsasback|test1|myDeviceClound)/ {
 		client_max_body_size    1000m;
 		proxy_read_timeout 10000s;
-		proxy_pass http://10.232.39.18:8082;
+		proxy_pass http://sys.pt.miui.com;
 	}
 			
 }

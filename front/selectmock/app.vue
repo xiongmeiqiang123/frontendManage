@@ -15,22 +15,10 @@
 <script>
 	import request from 'superagent'
 	import CreateMock from '../createmock/index.vue'
+    import ipsConf  from '../../conf/ips.js'
+    const ips = ipsConf.map((item) => ({value:item.key, name: item.name}))
 
-	const names = [
-		{value:'mqsas', name: '线上'},
-		{value:'localhost', name: '本地'},
-		{value:'liuxiwen', name: '刘喜文'},
-		{value:'anqi', name: '王安奇'},
-		{value:'linlin', name: '王林林'},
-		{value:'zhicai', name: '彭志才'},
-		{value:'liuyilan', name: '柳依岚'},
-		{value:'dawei', name: '蔡大伟'},
-		{value:'zhangyang', name: '张阳'},
-		{value:'wangbin', name: '王斌'},
-		{value:'maqihao', name: '小马哥'},
-		{value:'test', name: '测试服务器'},
-		{value:'preview', name: 'preview服务器'},
-	]
+	const names = ips
 
 	export default {
 	  data () {
