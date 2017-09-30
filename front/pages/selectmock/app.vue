@@ -15,9 +15,9 @@
 import request from 'superagent'
 import {
     createGETPromise
-} from '../../components/request'
+} from '../../../components/request'
 import CreateMock from '../createmock/index.vue'
-import ipsConf from '../../conf/ips.js'
+import ipsConf from '../../../conf/ips.js'
 const ips = ipsConf.map((item) => ({
     value: item.key,
     name: item.name

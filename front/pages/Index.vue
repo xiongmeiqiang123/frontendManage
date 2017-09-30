@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import createMock from '../createmock/index.vue'
-import SelectMock from '../selectmock/app.vue'
+import createMock from './createmock/index.vue'
+import SelectMock from './selectmock/app.vue'
 export default {
     name: 'IndexPage',
     components: {
