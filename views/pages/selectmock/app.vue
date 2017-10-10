@@ -1,13 +1,31 @@
 <template>
 <div id="nginx">
-    <h1 class='title'>{{ msg }}</h1>
 
-    <div class="current">
-        当前选择服务器：{{current}}
+    <div>
+        <h1 class='title'>前端选择</h1>
+
+        <div class="current">
+            当前选择前端工程：{{currentFront}}
+        </div>
+        <div class="buttons">
+            <el-button key='item.name' v-bind:type="item.name === currentFront ? 'primary' : ''" v-for="item in frontIps" @click.native="selectFrontEnd(item.value)">{{item.name}}</el-button>
+        </div>
     </div>
-    <div class="buttons">
-        <el-button key='item.name' v-bind:type="item.name === current ? 'primary' : ''" v-for="item in names" @click.native="createMock(item.value)">{{item.name}}</el-button>
+
+
+
+    <div>
+        <h1 class='title'>mock 服务器选择</h1>
+
+        <div class="current">
+            当前选择服务器：{{current}}
+        </div>
+        <div class="buttons">
+            <el-button key='item.name' v-bind:type="item.name === current ? 'primary' : ''" v-for="item in names" @click.native="createMock(item.value)">{{item.name}}</el-button>
+        </div>
     </div>
+
+
 </div>
 </template>
 
@@ -23,6 +41,12 @@ const ips = ipsConf.map((item) => ({
     name: item.name
 }))
 
+import frontProjects from '../../../conf/frontProjects.js'
+const frontIps = frontProjects.map((item) => ({
+    value: item.key,
+    name: item.name
+}))
+
 const names = ips
 
 export default {
@@ -31,7 +55,9 @@ export default {
         return {
             msg: 'mock 服务器选择',
             names,
+            frontIps,
             current: '还未选择',
+            currentFront: '还未选择',
             selected: 'test'
         }
     },
@@ -44,11 +70,44 @@ export default {
         CreateMock
     },
     methods: {
+        selectFrontEnd(name){
+            request.get('/action/rewriteServer')
+                .query({
+                    front: name
+                })
+                .end((err, res) => {
+                    if (err) {
+                        this.$notify({
+                            message: '请求出错',
+                            duration: 1000
+                        });
+                        return false;
+                    }
+                    if (res.body.status) {
+                        // $('.buttons button').removeClass('active')
+                        // $(e.target).addClass('active');
+                        this.currentFront = this.frontIps.filter(item => item.value === name)[0].name;
+
+                        this.$notify({
+                            type: 'success',
+                            message: '修改成功！'
+                        })
+                    } else {
+                        // this.who = who;
+                        this.currentFront = name;
+                        this.$notify({
+                            message: '请求出错',
+                            duration: 6000
+                        });
+                    }
+
+                });
+        },
         createMock(name) {
             // let who = e.target.innerHTML;
             request.get('/action/rewriteServer')
                 .query({
-                    using: name
+                    mock: name
                 })
                 .end((err, res) => {
                     if (err) {
