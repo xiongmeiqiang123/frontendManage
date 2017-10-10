@@ -15,6 +15,11 @@ let name = {
 }
 const ips = [
     {
+        name: '本地',
+        key: 'localhost',
+        ip: 'http://127.0.0.1:3001'
+    },
+    {
         name: '线上',
         key: 'production',
         ip: 'http://sys.pt.miui.com'
