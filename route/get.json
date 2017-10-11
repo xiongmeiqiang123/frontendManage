@@ -796,5 +796,8 @@
     },
     "/mqsas/userCenter/getUserSubscriptionPkns.do": {
         "data": "mqsasusercentergetusersubscriptionpknsdo"
+    },
+    "/conf/uploadDataConfigure/listConfigureInfo.do": {
+        "data": "confuploaddataconfigurelistconfigureinfodo"
     }
 }

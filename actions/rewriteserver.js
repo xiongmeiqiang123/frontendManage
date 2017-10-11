@@ -31,7 +31,7 @@ let servers = [
 				type: 'front',
 				proxy_passes: frontIpsMap
 			},{
-				path: '~ ^/(myDeviceCloundNew|mqsas|mqsasdata|mqsasABTest|knowledge|whiteList|mqsasback|test1|myDeviceClound)/',
+				path: '~ ^/(myDeviceCloundNew|mqsas|mqsasdata|mqsasABTest|knowledge|whiteList|mqsasback|test1|myDeviceClound|conf)/',
 				using: 'mqsas',//
 				type: 'mock',
 				proxy_passes: ipsMap
