@@ -29,12 +29,12 @@ const ips = [
         ip: 'http://preview.sys.pt.miui.com'
     }, {
         name: '测试环境',
-        key: 'caidawei',
+        key: 'test',
         ip: 'http://test.sys.pt.miui.com'
     }, {
         name: '蔡大伟',
         key: 'caidawei',
-        ip: 'http://10.232.39.53:8082'
+        ip: 'http://10.232.39.24:8015'
     }, {
         name: '王林林',
         key: 'wanglinlin',

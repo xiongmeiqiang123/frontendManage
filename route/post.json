@@ -10,7 +10,7 @@
         "data": "test"
     },
     "/mqsas/test1": {
-        "data": "test1"
+        "data": "mqsastest1"
     },
     "/mqsas/upload": {
         "data": "test1"

@@ -17,11 +17,11 @@ const ips = [
     {
         name: 'mqsas',
         key: 'mqsas',
-        ip: 'http://127.0.0.1:3000'
+        ip: 'http://localhost:3000'
     }, {
         name: 'mqs-admin',
         key: 'mqsAdmin',
-        ip: 'http://127.0.0.1:8080'
+        ip: 'http://localhost:8080'
     }
 ]
 module.exports = ips;

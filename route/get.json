@@ -799,5 +799,8 @@
     },
     "/conf/uploadDataConfigure/listConfigureInfo.do": {
         "data": "confuploaddataconfigurelistconfigureinfodo"
+    },
+    "/conf/getUserStatus": {
+        "data": "confgetuserstatus"
     }
 }
