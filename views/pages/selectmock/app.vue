@@ -5,7 +5,7 @@
         <h1 class='title'>前端选择</h1>
 
         <div class="current">
-            当前选择前端工程：{{currentFront}}
+            <!-- 当前选择前端工程：{{currentFront}} -->
         </div>
         <div class="buttons">
             <el-button key='item.name' v-bind:type="item.value === currentFront ? 'primary' : ''" v-for="item in frontIps" @click.native="selectFrontEnd(item.value)">{{item.name}}</el-button>
@@ -18,7 +18,7 @@
         <h1 class='title'>mock 服务器选择</h1>
 
         <div class="current">
-            当前选择服务器：{{current}}
+            <!-- 当前选择服务器：{{current}} -->
         </div>
         <div class="buttons">
             <el-button key='item.name' v-bind:type="item.value === current ? 'primary' : ''" v-for="item in names" @click.native="createMock(item.value)">{{item.name}}</el-button>
