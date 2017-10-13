@@ -19,6 +19,10 @@ const route = {
 	'/action/collecterror': {
 		data: 'collecterror',
 		type: 'POST'
+	},
+	'/action/getCurrentInfo': {
+		data: 'getCurrentInfo',
+		type: 'GET'
 	}
 }
 

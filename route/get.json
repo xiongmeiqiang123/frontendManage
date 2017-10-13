@@ -802,5 +802,14 @@
     },
     "/conf/getUserStatus": {
         "data": "confgetuserstatus"
+    },
+    "/mqsas/exp/install/detail.do": {
+        "data": "mqsasexpinstalldetaildo"
+    },
+    "/mqsas/excp/getVersions.do": {
+        "data": "mqsasexcpgetversionsdo"
+    },
+    "/mqsas/exp/install/overview.do": {
+        "data": "mqsasexpinstalloverviewdo"
     }
 }

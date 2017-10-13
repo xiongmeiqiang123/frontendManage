@@ -8,7 +8,7 @@
             当前选择前端工程：{{currentFront}}
         </div>
         <div class="buttons">
-            <el-button key='item.name' v-bind:type="item.name === currentFront ? 'primary' : ''" v-for="item in frontIps" @click.native="selectFrontEnd(item.value)">{{item.name}}</el-button>
+            <el-button key='item.name' v-bind:type="item.value === currentFront ? 'primary' : ''" v-for="item in frontIps" @click.native="selectFrontEnd(item.value)">{{item.name}}</el-button>
         </div>
     </div>
 
@@ -21,7 +21,7 @@
             当前选择服务器：{{current}}
         </div>
         <div class="buttons">
-            <el-button key='item.name' v-bind:type="item.name === current ? 'primary' : ''" v-for="item in names" @click.native="createMock(item.value)">{{item.name}}</el-button>
+            <el-button key='item.name' v-bind:type="item.value === current ? 'primary' : ''" v-for="item in names" @click.native="createMock(item.value)">{{item.name}}</el-button>
         </div>
     </div>
 
@@ -62,6 +62,28 @@ export default {
         }
     },
     created() {
+        request.get('/action/getCurrentInfo')
+            .query()
+            .end((err, res) => {
+                if (err) {
+                    this.$notify({
+                        message: '请求出错',
+                        duration: 1000
+                    });
+                    return false;
+                }
+                if (res.body.status) {
+                    let data = res.body.data;
+                    this.current = data.mock;
+                    this.currentFront = data.front;
+                } else {
+                    this.$notify({
+                        message: '请求出错',
+                        duration: 6000
+                    });
+                }
+
+            });
         this.names.map(item => {
             //   createGETPromise(item.ip)()
         })
@@ -86,7 +108,7 @@ export default {
                     if (res.body.status) {
                         // $('.buttons button').removeClass('active')
                         // $(e.target).addClass('active');
-                        this.currentFront = this.frontIps.filter(item => item.value === name)[0].name;
+                        this.currentFront = this.frontIps.filter(item => item.value === name)[0].value;
 
                         this.$notify({
                             type: 'success',
@@ -120,7 +142,7 @@ export default {
                     if (res.body.status) {
                         // $('.buttons button').removeClass('active')
                         // $(e.target).addClass('active');
-                        this.current = this.names.filter(item => item.value === name)[0].name;
+                        this.current = this.names.filter(item => item.value === name)[0].value;
 
                         this.$notify({
                             type: 'success',
