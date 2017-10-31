@@ -26,7 +26,7 @@ let servers = [
 		listen: 80,
 		locations: [
 			{
-				path: '/',
+				path: '~ ^/mqsas(.*).(gif|jpg|png|js|css|html)$',
 				using:'mqsas',
 				type: 'front',
 				proxy_passes: frontIpsMap

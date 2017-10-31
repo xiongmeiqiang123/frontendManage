@@ -811,5 +811,14 @@
     },
     "/mqsas/exp/install/overview.do": {
         "data": "mqsasexpinstalloverviewdo"
+    },
+    "/whiteList/showAll/telephony.do": {
+        "data": "whitelistshowalltelephonydo"
+    },
+    "/mqsas/autoCraw/common/showAll/Wcns.do.do": {
+        "data": "mqsasautocrawcommonshowallwcnsdodo"
+    },
+    "/'/mqsas/autoCraw/common/showAll/Wcns.do.do": {
+        "data": "'mqsasautocrawcommonshowallwcnsdodo"
     }
 }
