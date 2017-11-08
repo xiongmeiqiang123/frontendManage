@@ -26,7 +26,7 @@ let servers = [
 		listen: 80,
 		locations: [
 			{
-				path: '~ ^/mqsas(.*).(gif|jpg|png|js|css|html)$',
+				path: '~ ^/(.*).(gif|jpg|png|js|css|html)$',
 				using:'mqsas',
 				type: 'front',
 				proxy_passes: frontIpsMap
@@ -53,6 +53,11 @@ server {
 	listen ${server.listen};
 	server_name  localhost www.localhost admin www.admin;
 	proxy_set_header backdoor sys;
+
+
+	location ~ ^/local {
+		proxy_pass http://127.0.0.1:4873;
+	}
 
 	${
 		locations.map((location)=>{//locations解析
