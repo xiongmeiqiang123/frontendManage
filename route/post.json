@@ -41,5 +41,11 @@
     },
     "/knowledge/uploadAnalyzeFile.do": {
         "data": "knowledgeuploadanalyzefiledo"
+    },
+    "/mqsas/page/info/save.do": {
+        "data": "mqsaspageinfosavedo"
+    },
+    "/mqsas/userCenter/getUserSubscriptionPkns.do": {
+        "data": "mqsasusercentergetusersubscriptionpknsdo"
     }
 }

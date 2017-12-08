@@ -820,5 +820,14 @@
     },
     "/'/mqsas/autoCraw/common/showAll/Wcns.do.do": {
         "data": "'mqsasautocrawcommonshowallwcnsdodo"
+    },
+    "/mqsas/userCenter/getPkns.do": {
+        "data": "mqsasusercentergetpknsdo"
+    },
+    "/mqsas/page/info/get.do": {
+        "data": "mqsaspageinfogetdo"
+    },
+    "/mqsas/excp/newDetail/getDet.do": {
+        "data": "mqsasexcpnewdetailgetdetdo"
     }
 }

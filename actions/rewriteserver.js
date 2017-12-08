@@ -54,11 +54,6 @@ server {
 	server_name  localhost www.localhost admin www.admin;
 	proxy_set_header backdoor sys;
 
-
-	location ~ ^/local {
-		proxy_pass http://127.0.0.1:4873;
-	}
-
 	${
 		locations.map((location)=>{//locations解析
 			let proxy_passes = location.proxy_passes || {};

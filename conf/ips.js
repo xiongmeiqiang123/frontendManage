@@ -34,11 +34,11 @@ const ips = [
     }, {
         name: '蔡大伟',
         key: 'caidawei',
-        ip: 'http://10.232.39.24:8015'
+        ip: 'http://10.232.33.239:8015'
     }, {
         name: '王林林',
         key: 'wanglinlin',
-        ip: 'http://10.232.33.23:8082'
+        ip: 'http://10.232.39.240:8082'
     }, {
         name: '王安奇',
         key: 'wanganqi',
