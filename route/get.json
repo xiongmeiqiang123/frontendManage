@@ -829,5 +829,11 @@
     },
     "/mqsas/excp/newDetail/getDet.do": {
         "data": "mqsasexcpnewdetailgetdetdo"
+    },
+    "/test": {
+        "data": "test"
+    },
+    "/test1": {
+        "data": "test1"
     }
 }
