@@ -835,5 +835,35 @@
     },
     "/test1": {
         "data": "test1"
+    },
+    "/mqsas/killProcess/wrongKillTrend.do": {
+        "data": "mqsaskillprocesswrongkilltrenddo"
+    },
+    "/mqsas/killProcess/wrongKillTrendDetail.do": {
+        "data": "mqsaskillprocesswrongkilltrenddetaildo"
+    },
+    "/mqsas/killProcess/wrongKillCompare.do": {
+        "data": "mqsaskillprocesswrongkillcomparedo"
+    },
+    "/mqsas/killProcess/wrongKillPolicyCompare.do": {
+        "data": "mqsaskillprocesswrongkillpolicycomparedo"
+    },
+    "/conf/userLoginStatus/getUserName.do": {
+        "data": "confuserloginstatusgetusernamedo"
+    },
+    "/mqsas/killProcess/wrongKillProcessCompare.do": {
+        "data": "mqsaskillprocesswrongkillprocesscomparedo"
+    },
+    "/mqsas/killProcess/wrongKillDistribute.do": {
+        "data": "mqsaskillprocesswrongkilldistributedo"
+    },
+    "/mqsas/killProcess/wrongKillPolicyDistribute.do": {
+        "data": "mqsaskillprocesswrongkillpolicydistributedo"
+    },
+    "/mqsas/killProcess/wrongKillProcessDistribute.do": {
+        "data": "mqsaskillprocesswrongkillprocessdistributedo"
+    },
+    "/mqsas/killProcess/wrongKillRank.do": {
+        "data": "mqsaskillprocesswrongkillrankdo"
     }
 }

@@ -56,7 +56,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "sudo supervisor index.js",
         "end": "supervisor -k index.js",
-        "pm2Start": "sudo pm2 start --name \"mock\" supervisor index.js",
+        "pm2Start": " pm2 start --name mock sudo supervisor index.js",
         "pm2Stop": "pm2 delete mock"
     },
     "author": "John",

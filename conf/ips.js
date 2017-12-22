@@ -11,7 +11,8 @@ let name = {
     dawei: 'http://10.232.33.44:8088',
     liuyilan: 'http://10.232.33.8:8082',
     wangbin: 'http://10.232.33.42:8082',
-    maqihao: 'http://10.232.39.16:8082'
+    maqihao: 'http://10.232.39.16:8082',
+    conf:'http://conf.sys.pt.miui.com'
 }
 const ips = [
     {
@@ -34,7 +35,7 @@ const ips = [
     }, {
         name: '蔡大伟',
         key: 'caidawei',
-        ip: 'http://10.232.33.239:8015'
+        ip: 'http://10.232.33.239:8082'
     }, {
         name: '王林林',
         key: 'wanglinlin',
@@ -55,7 +56,15 @@ const ips = [
         name: '王斌',
         key: 'wangbin',
         ip: 'http://10.232.39.23:8082'
-    }
+    },
+    {
+        name: 'conf',
+        key: 'conf',
+        ip: 'http://conf.sys.pt.miui.com'
+    },{
+        name: '雷秀英',
+        key: 'leixiuying',
+        ip: 'http://10.232.39.215:8082'    }
 ]
 module.exports = ips;
 // export default  ips;
