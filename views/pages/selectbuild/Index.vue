@@ -23,7 +23,8 @@
 <script>
 import request from 'superagent'
 import {
-    createPOSTPromise
+    createPOSTPromise,
+    createGETPromise
 } from 'components/request'
 import modules from 'conf/modules.js'
 
@@ -31,12 +32,18 @@ export default {
     name: 'select-build',
     data() {
         return {
-            modules,
+            modules:[],
             current: null
         }
     },
     created() {
+        createGETPromise('/action/getModules')().then(res=>{
+            if(res.status) {
+                this.modules = res.data
+            }else {
 
+            }
+        })
     },
     methods: {
         selectBuild(module){

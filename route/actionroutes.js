@@ -27,6 +27,10 @@ const route = {
 	'/action/build':{
 		data: 'build',
 		type: 'POST'
+	},
+	'/action/getModules':{
+		data: 'getModules',
+		type:'GET'
 	}
 }
 

@@ -17,7 +17,7 @@ module.exports = function rewriteServer(req, res, next) {
 	const {
 		module,
 	} = params;
-	let command = `cd /home/mi/workspace/miui-sys-front && npm run build -- --env.name ${module} && exit 0`
+	let command = `cd /home/mi/workspace/miui-sys-front && npm run build -- --env.name ${module} `
 
 	let resultCode = exec(command);
 	if(resultCode !== 0) {
