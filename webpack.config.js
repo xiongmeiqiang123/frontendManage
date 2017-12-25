@@ -22,8 +22,10 @@ const config =  {
     ],
     resolve: {
       alias: {
-        vue: 'vue/dist/vue.js'
-      }
+        vue: 'vue/dist/vue.js',
+		conf: path.join(__dirname, './conf'),
+		components: path.join(__dirname, './components'),
+		}
     },
     module: {
 	    rules: [

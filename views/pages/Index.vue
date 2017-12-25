@@ -6,17 +6,23 @@
        <el-tab-pane label="创建Mock" name="second">
            <create-mock> </create-mock>
        </el-tab-pane>
+       <el-tab-pane label="build" name="third">
+       <select-build></select-build>
+       </el-tab-pane>
      </el-tabs>
 </template>
 
 <script>
 import createMock from './createmock/index.vue'
 import SelectMock from './selectmock/app.vue'
+import SelectBuild from './selectbuild/Index.vue'
+
 export default {
     name: 'IndexPage',
     components: {
+        SelectBuild,
         createMock,
-        SelectMock
+        SelectMock,
     },
     data() {
       return {
@@ -25,7 +31,6 @@ export default {
     },
     methods: {
       handleClick(tab, event) {
-          console.log(tab);
         this.activeName2 = tab;
       }
     }

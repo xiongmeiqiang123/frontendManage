@@ -23,6 +23,10 @@ const route = {
 	'/action/getCurrentInfo': {
 		data: 'getCurrentInfo',
 		type: 'GET'
+	},
+	'/action/build':{
+		data: 'build',
+		type: 'POST'
 	}
 }
 

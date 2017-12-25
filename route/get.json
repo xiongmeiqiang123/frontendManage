@@ -865,5 +865,8 @@
     },
     "/mqsas/killProcess/wrongKillRank.do": {
         "data": "mqsaskillprocesswrongkillrankdo"
+    },
+    "/conf/taskManage/getTask.do": {
+        "data": "conftaskmanagegettaskdo"
     }
 }

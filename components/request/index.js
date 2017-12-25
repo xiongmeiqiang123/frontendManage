@@ -2,7 +2,7 @@ import request from 'superagent'
 import { Notification } from 'element-ui'
 // import { Message } from 'element-ui'
 
-const ip = 'http://127.0.0.1'
+const ip = ''
 function formatUrl (url) {
   return ip + url
 }
