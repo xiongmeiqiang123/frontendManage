@@ -15,6 +15,15 @@
                 :disabled="current !== null "
                 @click.native="selectBuild(item)">{{item}}</el-button>
         </div>
+
+        <div class="buttons">
+            <h2>打包admin</h2>
+            <el-button key='item.name'
+                :loading="current === item"
+                :type="current === item ? 'primary':''"
+                :disabled="current !== null "
+                @click.native="selectBuild('admin')">admin</el-button>
+        </div>
     </div>
 
 </div>

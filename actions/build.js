@@ -18,6 +18,10 @@ module.exports = function rewriteServer(req, res, next) {
 		module,
 	} = params;
 	let command = `cd /home/mi/workspace/miui-sys-front && npm run build -- --env.name ${module} `
+	if(module === 'admin') {
+		command = `cd /home/mi/workspace/mqs-admin && npm run build -- --env.name ${module} `
+	}
+
 
 	let resultCode = exec(command);
 	if(resultCode !== 0) {
