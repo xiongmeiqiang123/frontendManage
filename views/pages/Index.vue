@@ -8,6 +8,7 @@
        </el-tab-pane>
        <el-tab-pane label="build" name="third">
        <select-build></select-build>
+       <!-- 有个问题，正在解决。。。。 -->
        </el-tab-pane>
      </el-tabs>
 </template>

@@ -31,6 +31,10 @@ const route = {
 	'/action/getModules':{
 		data: 'getModules',
 		type:'GET'
+	},
+	'/action/createGitProject':{
+		data: 'createGitProject',
+		type:'GET'
 	}
 }
 

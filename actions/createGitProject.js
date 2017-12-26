@@ -16,10 +16,7 @@ module.exports = function rewriteServer(req, res, next) {
 	const {
 		module,
 	} = params;
-	let command = `cd /home/mi/workspace/miui-sys-front-for-build && git checkout develop && git pull && npm run build -- --env.name ${module} `
-	if(module === 'admin') {
-		command = `cd /home/mi/workspace/mqs-admin-for-build && git checkout master && git pull && npm run build -- --env.name ${module} `
-	}
+	const command = `cd /home/mi/workspace && git clone git@git.n.xiaomi.com:xiongmeiqiang/miui-sys.git miui-sys-front-for-build && cd miui-sys-front-for-build && npm i`
 
 
 	let resultCode = exec(command);
