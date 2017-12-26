@@ -5,7 +5,6 @@ const fs = require('fs');
 
 module.exports = function rewriteServer(req, res, next) {
     fs.readdir(testFolder, (err, files) => {
-        console.log(err);
         if(err) {
             res.send({status: false})
             return;
