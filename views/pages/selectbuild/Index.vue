@@ -2,7 +2,8 @@
 <div id="build">
 
     <div>
-        <h1 class='title'>选择打包的模块</h1>
+        <h1  class='title'>miui-sys-front</h1>
+        <h2>选择打包的模块</h2>
 
         <div class="current">
             <!-- 当前选择前端工程：{{currentFront}} -->
@@ -17,7 +18,8 @@
         </div>
 
         <div class="buttons">
-            <h2>打包admin</h2>
+            <h1  class='title'>admin</h1>
+            <h2>选择打包的模块</h2>
             <el-button key='item.name'
                 :loading="current === item"
                 :type="current === item ? 'primary':''"

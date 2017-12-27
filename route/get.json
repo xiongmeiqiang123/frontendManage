@@ -868,5 +868,11 @@
     },
     "/conf/taskManage/getTask.do": {
         "data": "conftaskmanagegettaskdo"
+    },
+    "/mqsas/getSettingInfo.do": {
+        "data": "mqsasgetsettinginfodo"
+    },
+    "/mqsas/getParameterData.do": {
+        "data": "mqsasgetparameterdatado"
     }
 }

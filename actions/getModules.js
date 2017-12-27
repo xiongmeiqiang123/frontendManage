@@ -9,6 +9,6 @@ module.exports = function rewriteServer(req, res, next) {
             res.send({status: false})
             return;
         }
-     	res.send({status: true, data: files})
+     	res.send({status: true, data: ['all'].concat(files)})
     })
 }
