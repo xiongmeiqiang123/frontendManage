@@ -8,7 +8,10 @@
             <!-- 当前选择前端工程：{{currentFront}} -->
         </div>
         <div class="buttons">
-            <el-button key='item.name' v-bind:type="item.value === currentFront ? 'primary' : ''" v-for="item in frontIps" @click.native="selectFrontEnd(item.value)">{{item.name}}</el-button>
+            <el-tooltip placement="top" v-for="item in frontIps" effect='light'>
+              <div slot="content"> {{item.ip}}</div>
+              <el-button key='item.name' v-bind:type="item.value === currentFront ? 'primary' : ''"  @click.native="selectFrontEnd(item.value)">{{item.name}}</el-button>
+            </el-tooltip>
         </div>
     </div>
 
@@ -21,7 +24,10 @@
             <!-- 当前选择服务器：{{current}} -->
         </div>
         <div class="buttons">
-            <el-button key='item.name' v-bind:type="item.value === current ? 'primary' : ''" v-for="item in names" @click.native="createMock(item.value)">{{item.name}}</el-button>
+            <el-tooltip placement="top" v-for="item in names"  effect='light'>
+              <div slot="content"> {{item.ip}}</div>
+            <el-button key='item.name' v-bind:type="item.value === current ? 'primary' : ''"  @click.native="createMock(item.value)">{{item.name}}</el-button>
+            </el-tooltip>
         </div>
     </div>
 
@@ -38,15 +44,18 @@ import CreateMock from '../createmock/index.vue'
 import ipsConf from 'conf/ips.js'
 const ips = ipsConf.map((item) => ({
     value: item.key,
-    name: item.name
+    name: item.name,
+    ip: item.ip
 }))
 
 import frontProjects from 'conf/frontProjects.js'
 const frontIps = frontProjects.map((item) => ({
     value: item.key,
-    name: item.name
+    name: item.name,
+    ip: item.ip
 }))
 
+console.log(ips, 'ips');
 const names = ips
 
 export default {
