@@ -35,6 +35,10 @@ const route = {
 	'/action/createGitProject':{
 		data: 'createGitProject',
 		type:'GET'
+	},
+	'/action/upload':{
+		data: 'upload',
+		type:'GET'
 	}
 }
 

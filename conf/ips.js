@@ -18,10 +18,18 @@ const ips = [
         key: 'test',
         ip: 'http://test.sys.pt.miui.com'
     }, {
-        name: '蔡大伟',
+        name: '蔡大伟-8082',
         key: 'caidawei',
         ip: 'http://10.232.33.239:8082'
+    },{
+        name: '蔡大伟-8015',
+        key: 'caidawei8015',
+        ip: 'http://10.232.33.239:8015'
     }, {
+        name: '毋小林-8012',
+        key: 'wuxiaolin',
+        ip: 'http://10.232.33.212:8082'
+    },{
         name: '王林林',
         key: 'wanglinlin',
         ip: 'http://10.232.39.240:8082'

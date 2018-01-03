@@ -7,8 +7,10 @@
            <create-mock> </create-mock>
        </el-tab-pane>
        <el-tab-pane label="build" name="third">
-       <select-build></select-build>
-       <!-- 有个问题，正在解决。。。。 -->
+           <select-build></select-build>
+       </el-tab-pane>
+       <el-tab-pane label="upload" name="upload">
+           <select-upload></select-upload>
        </el-tab-pane>
      </el-tabs>
 </template>
@@ -17,24 +19,26 @@
 import createMock from './createmock/index.vue'
 import SelectMock from './selectmock/app.vue'
 import SelectBuild from './selectbuild/Index.vue'
+import SelectUpload from './selectupload/Index.vue'
 
 export default {
-    name: 'IndexPage',
-    components: {
-        SelectBuild,
-        createMock,
-        SelectMock,
-    },
-    data() {
-      return {
-        activeName: 'first'
-      };
-    },
-    methods: {
-      handleClick(tab, event) {
-        this.activeName2 = tab;
-      }
-    }
+	name: 'IndexPage',
+	components: {
+		SelectBuild,
+		createMock,
+		SelectMock,
+		SelectUpload
+	},
+	data() {
+		return {
+			activeName: 'first'
+		};
+	},
+	methods: {
+		handleClick(tab, event) {
+			this.activeName2 = tab;
+		}
+	}
 }
 </script>
 
