@@ -13,8 +13,9 @@ module.exports = function uploadCodes(req, res, next) {
 
     let command = `cd ${pathes.miuiFront}  &&  npm run upload `
     if (module === 'admin') {
-        command = `cd ${pathes.admin} && su mi && npm run upload`
+        command = `cd ${pathes.admin} && npm run upload`
     }
+    console.log(command, '正在执行');
     let resultCode = exec(command);
 
     if (resultCode !== 0) {
