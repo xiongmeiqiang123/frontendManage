@@ -21,7 +21,8 @@
 <script>
 import request from 'superagent'
 import {
-    createGETPromise
+    createGETPromise,
+    createPOSTPromise
 } from 'components/request'
 const modules = ['miui-sys-front', 'admin']
 
@@ -40,7 +41,7 @@ export default {
         selectBuild(module){
             this.current = module
             this.$message('正在上传' + module);
-            createGETPromise('/action/upload', 'json')({module}).then(res=>{
+            createPOSTPromise('/action/upload', 'json')({module}).then(res=>{
                 this.current = null
                 if(res.status) {
                     this.$notify({

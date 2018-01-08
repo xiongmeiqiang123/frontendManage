@@ -38,7 +38,7 @@ const route = {
 	},
 	'/action/upload':{
 		data: 'upload',
-		type:'GET'
+		type:'POST'
 	}
 }
 
