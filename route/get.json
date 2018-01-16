@@ -874,5 +874,23 @@
     },
     "/mqsas/getParameterData.do": {
         "data": "mqsasgetparameterdatado"
+    },
+    "/conf/kylin/getTableInfo.do": {
+        "data": "confkylingettableinfodo"
+    },
+    "/conf/kylin/listBusiInfo.do": {
+        "data": "confkylinlistbusiinfodo"
+    },
+    "/conf/kylin/getTableStructure.do": {
+        "data": "confkylingettablestructuredo"
+    },
+    "/conf/kylin/getSqlInfo.do": {
+        "data": "confkylingetsqlinfodo"
+    },
+    "/conf/kylin/getParamFromSql.do": {
+        "data": "confkylingetparamfromsqldo"
+    },
+    "/conf/kylin/getChartInfo.do": {
+        "data": "confkylingetchartinfodo"
     }
 }

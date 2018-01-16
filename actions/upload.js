@@ -9,13 +9,13 @@ function exec(command = 'say hello') {
 
 module.exports = function uploadCodes(req, res, next) {
     let params = req.body;
-    const {module} = params;
+    const {module, message = '', branch = 'master'} = params;
 
-    let command = `cd ${pathes.miuiFront}  &&  npm run upload `
+    let command = `cd ${pathes.miuiFront}  &&  npm run upload -- ${branch} ${message}`
     if (module === 'admin') {
-        command = `cd ${pathes.admin} && npm run upload`
+        command = `cd ${pathes.admin} && npm run upload -- ${branch} ${message}`
     }
-    console.log(command, '正在执行');
+    console.log('正在执行---', command);
     let resultCode = exec(command);
 
     if (resultCode !== 0) {
