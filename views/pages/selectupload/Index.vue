@@ -64,6 +64,7 @@ export default {
                         type: 'success',
                         message: '上传成功！请在git项目上加2，然后发布'
                     })
+                    this.message = ''
                 }else {
                     this.$notify({
                         type: 'error',
