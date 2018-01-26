@@ -32,7 +32,7 @@ const ips = [
     },{
         name: '王林林',
         key: 'wanglinlin',
-        ip: 'http://10.232.39.240:8082'
+        ip: 'http://10.232.39.226:8082'
     }, {
         name: '王安奇',
         key: 'wanganqi',

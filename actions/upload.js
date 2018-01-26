@@ -9,8 +9,9 @@ function exec(command = 'say hello') {
 
 module.exports = function uploadCodes(req, res, next) {
     let params = req.body;
-    const {module, message = '', branch = 'master'} = params;
-
+    const {module: _module = '', message: _message = '', branch = 'master'} = params;
+    const message = _message.replace(/\&|\&\&|\ /g, '_')
+    const module = _module.replace(/\&|\&\&|\ /g, '_')
     let command = `cd ${pathes.miuiFront}  &&  npm run upload -- ${branch} ${message}`
     if (module === 'admin') {
         command = `cd ${pathes.admin} && npm run upload -- ${branch} ${message}`

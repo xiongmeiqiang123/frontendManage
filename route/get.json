@@ -892,5 +892,8 @@
     },
     "/conf/kylin/getChartInfo.do": {
         "data": "confkylingetchartinfodo"
+    },
+    "/mqsas/power/dashboard/bigCategory.do": {
+        "data": "mqsaspowerdashboardbigcategorydo"
     }
 }

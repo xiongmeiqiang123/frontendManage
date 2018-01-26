@@ -22,8 +22,8 @@ var colors = require('../conf/colors')
         });
         module.exports = function rewriteServer(req, res, next) {
             let params = req.body;
-            const {module} = params;
-
+            const {module:_module=''} = params;
+            const module = _.replace(/\&|\&\&|\ /g, '_')
             filesPromise.then((files = []) => {
                 let command = `cd /home/mi/workspace/miui-sys-front-for-build && git checkout develop && git pull && npm run build `
                 if (module === 'admin') {
