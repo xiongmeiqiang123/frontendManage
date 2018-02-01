@@ -28,10 +28,8 @@ var colors = require('../conf/colors')
                 let command = `cd /home/mi/workspace/miui-sys-front-for-build && git checkout develop && git pull && npm run build `
                 if (module === 'admin') {
                     command = `cd /home/mi/workspace/mqs-admin-for-build && git checkout master && git pull && npm run build -- --env.name ${module} `
-                } else if (files.includes(module)) {
-					command = `${command}-- --env.name ${module} `
-				} else {
-
+                } else {
+                    command = `${command}-- --env.name ${module} `
 				}
 
                 let resultCode = exec(command);

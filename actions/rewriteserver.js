@@ -52,6 +52,10 @@ function  assemble(servers=[], data={}) {
 server {
 	listen ${server.listen};
 	server_name  localhost www.localhost admin www.admin;
+
+	proxy_set_header Cookie $http_cookie;
+	proxy_cookie_domain domino.server nginx.server;
+
 	proxy_set_header backdoor sys;
 
 	${

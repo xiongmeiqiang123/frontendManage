@@ -9,12 +9,26 @@
             <!-- 当前选择前端工程：{{currentFront}} -->
         </div>
         <div class="buttons">
-            <el-button key='item.name'
-                v-for="item in modules"
-                :loading="current === item"
-                :type="current === item ? 'primary':''"
-                :disabled="current !== null "
-                @click.native="selectBuild(item)">{{item}}</el-button>
+            <el-select
+                v-model="checkedModules"
+                multiple
+                filterable
+                remote
+                style="width:800px;"
+                reserve-keyword
+                placeholder="请输入关键词"
+                :loading="loading">
+                <el-option
+                  v-for="item in modules"
+                  :key="item"
+                  :label="item"
+                  :value="item">
+                </el-option>
+              </el-select>
+
+            <el-button  :disabled="isBuiding || !checkedModules.length"
+                type='primary'
+                @click.native="selectBuild(checkedModules.join('##'))">打包</el-button>
         </div>
 
         <div class="buttons">
@@ -23,7 +37,7 @@
             <el-button key='item.name'
                 :loading="current === item"
                 :type="current === item ? 'primary':''"
-                :disabled="current !== null "
+                :disabled="isBuiding"
                 @click.native="selectBuild('admin')">admin</el-button>
         </div>
     </div>
@@ -43,6 +57,8 @@ export default {
     name: 'select-build',
     data() {
         return {
+            checkedModules:[],
+            isBuiding:false,
             modules:[],
             current: null
         }
@@ -58,9 +74,11 @@ export default {
     },
     methods: {
         selectBuild(module){
+            this.isBuiding = true;
             this.current = module
             this.$message('正在打包模块－－' + module);
             createPOSTPromise('/action/build', 'json')({module}).then(res=>{
+                this.isBuiding = false;
                 this.current = null
                 if(res.status) {
                     this.$notify({
