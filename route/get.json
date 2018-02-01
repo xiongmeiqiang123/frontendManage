@@ -895,5 +895,17 @@
     },
     "/mqsas/power/dashboard/bigCategory.do": {
         "data": "mqsaspowerdashboardbigcategorydo"
+    },
+    "/mqsas/sysopt/coldStart/categoryCompare.do": {
+        "data": "mqsassysoptcoldstartcategorycomparedo"
+    },
+    "/mqsas/killProcess/getAllModels.do": {
+        "data": "mqsaskillprocessgetallmodelsdo"
+    },
+    "/mqsas/killProcess/getAllVersionByModel.do": {
+        "data": "mqsaskillprocessgetallversionbymodeldo"
+    },
+    "/mqsas/sysopt/coldStart/processCompare.do": {
+        "data": "mqsassysoptcoldstartprocesscomparedo"
     }
 }

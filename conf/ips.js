@@ -57,7 +57,7 @@ const ips = [
     },{
         name: '雷秀英',
         key: 'leixiuying',
-        ip: 'http://10.232.39.215:8082'    }
+        ip: 'http://10.232.39.234:8082'    }
 ]
 module.exports = ips;
 // export default  ips;
