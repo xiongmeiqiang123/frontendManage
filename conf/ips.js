@@ -28,7 +28,7 @@ const ips = [
     }, {
         name: '毋小林-8012',
         key: 'wuxiaolin',
-        ip: 'http://10.232.33.212:8082'
+        ip: 'http://10.232.33.203:8082'
     },{
         name: '王林林',
         key: 'wanglinlin',
@@ -40,7 +40,7 @@ const ips = [
     }, {
         name: '张阳',
         key: 'zhangyang',
-        ip: 'http://10.232.33.60:8082'
+        ip: 'http://10.232.33.228:8082'
     }, {
         name: '刘喜文',
         key: 'liuxiwen',
