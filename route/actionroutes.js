@@ -39,6 +39,18 @@ const route = {
 	'/action/upload':{
 		data: 'upload',
 		type:'POST'
+	},
+	'/action/getProjects':{
+		data: 'getProjects',
+		type: 'GET'
+	},
+	'/action/getProjectGitLogs':{
+		data: 'getProjectGitLogs',
+		type: 'GET'
+	},
+	'/action/initProject':{
+		data: 'initProject',
+		type: 'GET'
 	}
 }
 
