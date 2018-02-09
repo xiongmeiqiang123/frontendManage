@@ -1,46 +1,28 @@
-<template lang="html">
-    <el-tabs  v-model='activeName' type="card">
-        <el-tab-pane label="选择Mock" name="first">
-            <select-mock> </select-mock>
-        </el-tab-pane>
-       <el-tab-pane label="创建Mock" name="second">
-           <create-mock> </create-mock>
-       </el-tab-pane>
-       <el-tab-pane label="build" name="third">
-           <select-build></select-build>
-       </el-tab-pane>
-       <el-tab-pane label="upload" name="upload">
-           <select-upload></select-upload>
-       </el-tab-pane>
-     </el-tabs>
+<template>
+  <div id="app">
+      <Menu></Menu>
+    <router-view></router-view>
+  </div>
 </template>
 
+
 <script>
-import createMock from './createmock/index.vue'
-import SelectMock from './selectmock/app.vue'
-import SelectBuild from './selectbuild/Index.vue'
-import SelectUpload from './selectupload/Index.vue'
+import Menu from '../menu/Index.vue'
 
 export default {
-	name: 'IndexPage',
-	components: {
-		SelectBuild,
-		createMock,
-		SelectMock,
-		SelectUpload
-	},
+	name: 'Index',
 	data() {
 		return {
-			activeName: 'first'
 		};
 	},
-	methods: {
-		handleClick(tab, event) {
-			this.activeName2 = tab;
-		}
-	}
+    components: {
+      Menu
+    }
 }
 </script>
 
 <style lang="css">
+body{
+    margin: 0;
+}
 </style>
