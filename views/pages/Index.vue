@@ -1,7 +1,9 @@
 <template>
   <div id="app">
       <Menu></Menu>
-    <router-view></router-view>
+      <div class='content'>
+          <router-view></router-view>
+      </div>
   </div>
 </template>
 
@@ -24,5 +26,8 @@ export default {
 <style lang="css">
 body{
     margin: 0;
+}
+.content{
+    padding: 20px;
 }
 </style>

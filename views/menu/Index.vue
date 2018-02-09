@@ -7,10 +7,10 @@
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b">
-         <el-menu-item index="1"><a href="#/selectmock">选择Mock</a></el-menu-item>
-         <el-menu-item index="2"><a href="#/createMock">创建Mock</a></el-menu-item>
-         <el-menu-item index="3"><a href="#/selectbuild">build</a></el-menu-item>
-         <el-menu-item index="4"><a href="#/selectupload">upload</a></el-menu-item>
+         <el-menu-item index="#/selectmock">选择Mock</el-menu-item>
+         <el-menu-item index="#/createMock">创建Mock</el-menu-item>
+         <el-menu-item index="#/selectbuild">build</el-menu-item>
+         <el-menu-item index="#/selectupload">upload</el-menu-item>
         </el-menu>
     </div>
 
@@ -25,7 +25,7 @@
    },
    methods: {
      handleSelect(key, keyPath) {
-       console.log(key, keyPath);
+       window.location.href = key;
      }
    }
  }
