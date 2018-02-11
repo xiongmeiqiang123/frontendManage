@@ -9,6 +9,6 @@ if (!fs.existsSync(basePath)){
 }
 
 module.exports = function (name, git) {
-    const commend = `cd ${basePath} && git clone ${git} ${name} && cd ${name} && npm i`
+    const commend = `cd ${basePath} && git clone ${git} ${name} && cd ${name} && sh shell/unzip.sh`
     return shell.exec(commend).code
 }
