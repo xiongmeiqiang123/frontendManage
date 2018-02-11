@@ -51,6 +51,10 @@ const route = {
 	'/action/initProject':{
 		data: 'initProject',
 		type: 'GET'
+	},
+	'/action/removeGitProject':{
+		data: 'removeGitProject',
+		type: 'GET'
 	}
 }
 
