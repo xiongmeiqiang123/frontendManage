@@ -61,7 +61,7 @@
         "startmi": "supervisor -i ./release, index.js",
         "start": "sudo supervisor -i ./release index.js",
         "end": "supervisor -k index.js",
-        "pm2Start": " pm2 start --name mock supervisor -i ./release index.js",
+        "pm2Start": " pm2 start --name mock index.js",
         "pm2Stop": "pm2 delete mock"
     },
     "author": "John",
