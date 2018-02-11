@@ -8,7 +8,7 @@ const actionRoutes = require("./actionroutes");
 router.use(function(req, res, next) {
     console.log("Time:", Date.now());
     console.log("Request URL:", req.originalUrl);
-    console.log("Request URL:", req.originalUrl);
+    console.log('Request Type:', req.method);
     next();
 });
 
