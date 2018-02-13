@@ -37,8 +37,8 @@ class Db {
         return this;
     }
 
-    async update(colName, query, data) {
-        if(!colName || !query || !data) {
+    async update(colName, query, ...data) {
+        if(!colName || !query || !data.length) {
             console.log('Db: update --- lack of params');
             return;
         }
@@ -48,7 +48,7 @@ class Db {
         await new Promise((resolve, reject)=> {
             var collection = this.db.collection(colName);
             // Insert some documents
-            collection.updateOne(query, data, (err, result)=> {
+            collection.updateMany(query, data, (err, result)=> {
               assert.equal(err, null);
               console.log(`Updated the ${colName} with the ${data}`);
               resolve(result);
@@ -83,8 +83,8 @@ class Db {
         return this;
     }
 
-    async insert(colName, data){
-        if(!colName || !data) {
+    async insert(colName, ...data){
+        if(!colName || !data.length) {
             console.log('Db: insert --- lack of params');
             return this;
         }
@@ -92,7 +92,7 @@ class Db {
         await new Promise((resolve, reject) =>{
             console.log(colName, 'data');
             var collection = this.db.collection(colName);
-            collection.insert(data, (err, result) =>{
+            collection.insertMany(data, (err, result) =>{
                 if(err) {
                     console.log(err);
                     reject()
