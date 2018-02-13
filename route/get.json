@@ -907,5 +907,8 @@
     },
     "/mqsas/sysopt/coldStart/processCompare.do": {
         "data": "mqsassysoptcoldstartprocesscomparedo"
+    },
+    "/mqsas/test2": {
+        "data": "mqsastest2"
     }
 }

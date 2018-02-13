@@ -2,15 +2,17 @@ var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
 
 class Db {
-    constructor(url){
+    constructor(url='mongodb://localhost:27017/', dataBaseName){
+        this.dataBaseName = dataBaseName;
         this.url = url
         this.db = null;
     }
 
-    async connect(dataBaseName){
+    async connect(dataBaseName = this.dataBaseName){
         if(!dataBaseName) {
             return;
         }
+        this.dataBaseName = dataBaseName;
         let db = await new Promise((resolve, reject)=> {
             MongoClient.connect(this.url + dataBaseName, (err, db) =>{
         	  assert.equal(null, err);
@@ -30,13 +32,14 @@ class Db {
             return this;
         }
         await this.db.close();
+        console.log('Db closed!');
         this.db = null;
         return this;
     }
 
     async update(colName, query, data) {
         if(!colName || !query || !data) {
-            console.log('update 参数错误');
+            console.log('Db: update --- lack of params');
             return;
         }
         if(!this.db) {
@@ -47,19 +50,19 @@ class Db {
             // Insert some documents
             collection.updateOne(query, data, (err, result)=> {
               assert.equal(err, null);
-              console.log("Updated the document with the field");
+              console.log(`Updated the ${colName} with the ${data}`);
               resolve(result);
+              this.close()
             });
         });
 
-        this.close()
         return this;
     }
 
     async delete(colName, query) {
 
         if(!query || !colName) {
-            console.log('delete ： lack of params');
+            console.log('Db: delete -- lack of params');
             return this;
         }
         if(!this.db) {
@@ -71,52 +74,63 @@ class Db {
             collection.deleteOne(query, (err, result) =>{
               assert.equal(err, null);
               // assert.equal(1, result.result.n);
-              console.log("Removed the document with the field ");
+              console.log(`Db: delete  ${result.result.n} from the ${colName} collection`);
               resolve(result)
+              this.close()
             });
         });
-        this.close()
+
         return this;
     }
 
-    async insert(colName, ...data){
+    async insert(colName, data){
         if(!colName || !data) {
-            console.log('delete ： lack of params');
+            console.log('Db: insert --- lack of params');
             return this;
         }
         let db = await this.connect()
-        console.log(db);
         await new Promise((resolve, reject) =>{
+            console.log(colName, 'data');
             var collection = this.db.collection(colName);
-            // Insert some documents
-            collection.insertMany(data, (err, result) =>{
-              console.log("Inserted 3 documents into the document collection");
-              resolve(result);
+            collection.insert(data, (err, result) =>{
+                if(err) {
+                    console.log(err);
+                    reject()
+                }else {
+                    console.log(`Db: Inserted  ${data.length} into the ${colName} collection`);
+                    resolve(result);
+                }
+              this.close()
             });
-        });
-        this.close()
+        })
+
         return this;
     }
 
     async find(colName, query, set){
         if(!query || !colName) {
+            console.log('Db: find --- lack of params');
             return;
         }
+        console.log(`Db: finding ${JSON.stringify(query)} from ${colName}`);
         if(!this.db) {
             await this.connect()
         }
 
         let data = await new Promise((resolve, reject) =>{
             var collection = this.db.collection(colName);
+
       	     // Find some documents
-          	  collection.find(query, set).toArray(function(err, docs) {
+          	  collection.find(query, set).toArray((err, docs)=>{
           	    assert.equal(err, null);
-          	    console.log("Found the following records");
+          	    console.log("Db: Found the following records");
                 resolve(docs)
+                this.close()
           	  });
         });
 
-         this.db.close();
          return data
     }
 }
+
+module.exports = Db;

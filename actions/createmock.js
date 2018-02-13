@@ -2,9 +2,11 @@ const fs = require('fs');
 const shell = require('shelljs');
 const path = require('path')
 const colors = require('../conf/colors')
-
+const Db = require('../db/Db.js')
 const getRoutes = require('../route/get.json')
 const postRoutes = require('../route/post.json')
+
+const db = new Db()
 
 module.exports = function(req, res, next) {
 	let params = req.body;
@@ -21,6 +23,15 @@ module.exports = function(req, res, next) {
 	}
 
 	let routes = type === 'GET' ? getRoutes: postRoutes;
+	db.connect('mqsas').then(async (db) => {
+
+		let FoundData = await db.find(type, {url:_url})
+		if(FoundData.length) {
+			db.update(type, {url: _url}, {$set: {data}})
+		}else {
+			db.insert(type, {url: _url, data:JSON.stringify(data)})
+		}
+	});
 	writeRoute(type, _url, routes, data, (err, result) => {
 		if(err) {
 			res.send({
