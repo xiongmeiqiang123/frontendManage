@@ -32,12 +32,8 @@ router.use(function(req, res, next) {
 
     db.connect('mqsas').then((db) => {
         db.find(method, {url:pathname}).then((data) => {
-            console.log(data, 'data');
             if(data.length){
-                res.send({
-                    status:true,
-                    data:data[0].data
-                })
+                res.send( JSON.parse(data[0].data))
             }else {
                 next()
             }
