@@ -117,20 +117,23 @@ export default {
                 url,
                 type
             } = this;
-
+            if(!url.trim()) {
+                return;
+            }
             request(type, url)
                 .query({
                     url,
                     type
                 })
                 .end((err, res) => {
+                    console.log(err, res, 'test');
                     if (err) return false;
-                    if (res.body) {
+                    if (res.text) {
                         this.$notify({
                             message: '该url已存在',
                             type: 'warning'
                         })
-                        this.data = JSON.stringify(res.body);
+                        this.data = res.text
                     }
                 })
         },
