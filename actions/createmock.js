@@ -5,7 +5,6 @@ const colors = require('../conf/colors')
 const Db = require('../db/Db.js')
 const getRoutes = require('../route/get.json')
 const postRoutes = require('../route/post.json')
-
 const db = new Db()
 
 module.exports = function(req, res, next) {
@@ -24,31 +23,41 @@ module.exports = function(req, res, next) {
 
 	let routes = type === 'GET' ? getRoutes: postRoutes;
 	db.connect('mqsas').then(async (db) => {
-
 		let FoundData = await db.find(type, {url:_url})
+		console.log(FoundData, 'FoundData');
 		if(FoundData.length) {
-			db.update(type, {url: _url}, {$set: {data}})
+			db.update(type, {url: _url}, {$set: {data:JSON.stringify(data)}}).then((value) => {
+					res.send({
+						status: true,
+						message: '创建成功'
+					})
+			})
 		}else {
-			db.insert(type, {url: _url, data:JSON.stringify(data)})
+			db.insert(type, {url: _url, data:JSON.stringify(data)}).then((value) => {
+					res.send({
+						status: true,
+						message: '创建成功'
+					})
+			})
 		}
 	});
-	writeRoute(type, _url, routes, data, (err, result) => {
-		if(err) {
-			res.send({
-				status: false,
-				message: '创建失败'
-			});
-
-			return;
-		}
-		res.send({
-			status: true,
-			message: '创建成功'
-		})
-		setTimeout(function () {
-			process.exit(1);
-		})
-	})
+	// writeRoute(type, _url, routes, data, (err, result) => {
+	// 	if(err) {
+	// 		res.send({
+	// 			status: false,
+	// 			message: '创建失败'
+	// 		});
+	//
+	// 		return;
+	// 	}
+	// 	res.send({
+	// 		status: true,
+	// 		message: '创建成功'
+	// 	})
+	// 	setTimeout(function () {
+	// 		process.exit(1);
+	// 	})
+	// })
 }
 
 function writeRoute(type = 'GET', url, routes = {}, data = {}, callback) {
@@ -63,9 +72,5 @@ function writeRoute(type = 'GET', url, routes = {}, data = {}, callback) {
 			callback(err, result);
 			return;
 		}
-
-		fs.writeFile(path.join(__dirname, '../data/' + name + '.json'), JSON.stringify(data), (err, result) => {
-			callback(err, result)
-		});
 	});
 }

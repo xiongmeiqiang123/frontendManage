@@ -6,12 +6,43 @@ const gets = require("./get.json");
 const actionRoutes = require("./actionroutes");
 const fs = require('fs')
 const path = require('path')
+const Db = require('../db/Db.js')
+let db = new Db();
+
 
 router.use(function(req, res, next) {
     console.log("Time:", Date.now());
     console.log("Request URL:", req.originalUrl);
     console.log('Request Type:', req.method);
     next();
+});
+
+
+/**
+ * router - 检查数据库是否有响应的mock
+ *
+ * @param  {type} function(req description
+ * @param  {type} res          description
+ * @param  {type} next         description
+ * @return {type}              description
+ */
+router.use(function(req, res, next) {
+    const {method, _parsedUrl} = req;
+    const {pathname} = _parsedUrl;
+
+    db.connect('mqsas').then((db) => {
+        db.find(method, {url:pathname}).then((data) => {
+            console.log(data, 'data');
+            if(data.length){
+                res.send({
+                    status:true,
+                    data:data[0].data
+                })
+            }else {
+                next()
+            }
+        })
+    })
 });
 
 _.map(actionRoutes, (value, name) => {
@@ -39,37 +70,4 @@ _.map(actionRoutes, (value, name) => {
         );
     }
 });
-
-_.each(posts, function(value, name) {
-    router.post(name, function(req, res) {
-        let dataFormatted = JSON.parse(
-            fs.readFileSync(path.join(__dirname, `../data/${value.data}.json`))
-        );
-        let text;
-        try {
-            text = Mock.mock(dataFormatted);
-        } catch (e) {
-            text = dataFormatted;
-        } finally {
-        }
-        res.send(text);
-    });
-});
-
-_.each(gets, function(value, name) {
-    router.get(name, function(req, res) {
-        let dataFormatted = JSON.parse(
-            fs.readFileSync(path.join(__dirname, `../data/${value.data}.json`))
-        );
-        let text;
-        try {
-            text = Mock.mock(dataFormatted);
-        } catch (e) {
-            text = dataFormatted;
-        } finally {
-        }
-        res.send(text);
-    });
-});
-
 module.exports = router;

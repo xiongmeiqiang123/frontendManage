@@ -45,10 +45,10 @@ class Db {
         return this;
     }
 
-    async update(colName, query, ...data) {
-        if(!colName || !query || !data.length) {
+    async update(colName, query, data) {
+        if(!colName || !query || !data) {
             console.log('Db: update --- lack of params');
-            return;
+            return Promise.reject()
         }
         if(!this.db) {
             await this.connect()
@@ -56,7 +56,7 @@ class Db {
         await new Promise((resolve, reject)=> {
             var collection = this.db.collection(colName);
             // Insert some documents
-            collection.updateMany(query, data, (err, result)=> {
+            collection.update(query, data, (err, result)=> {
                 this.close()
               assert.equal(err, null);
               console.log(`Updated the ${colName} with the ${data}`);
@@ -71,7 +71,7 @@ class Db {
 
         if(!query || !colName) {
             console.log('Db: delete -- lack of params');
-            return this;
+            return Promise.reject();
         }
         if(!this.db) {
             await this.connect()
@@ -94,7 +94,7 @@ class Db {
     async insert(colName, ...data){
         if(!colName || !data.length) {
             console.log('Db: insert --- lack of params');
-            return this;
+            return Promise.reject();
         }
         let db = await this.connect()
         try {
@@ -125,7 +125,7 @@ class Db {
     async find(colName, query, set){
         if(!query || !colName) {
             console.log('Db: find --- lack of params');
-            return;
+            return Promise.reject();
         }
         console.log(`Db: finding ${JSON.stringify(query)} from ${colName}`);
         if(!this.db) {

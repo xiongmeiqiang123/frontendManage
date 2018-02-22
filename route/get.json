@@ -910,5 +910,11 @@
     },
     "/mqsas/test2": {
         "data": "mqsastest2"
+    },
+    "/mqsas/userFeedback/getInfos.do": {
+        "data": "mqsasuserfeedbackgetinfosdo"
+    },
+    "/mqsas/xiongmeiqiang.do": {
+        "data": "mqsasxiongmeiqiangdo"
     }
 }
