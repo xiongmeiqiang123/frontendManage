@@ -13,15 +13,23 @@ class Db {
             return;
         }
         this.dataBaseName = dataBaseName;
-        let db = await new Promise((resolve, reject)=> {
-            MongoClient.connect(this.url + dataBaseName, (err, db) =>{
-        	  assert.equal(null, err);
-        	  console.log("Connected correctly to server");
-              this.db = db;
-              resolve(db)
-        	  // action(db, callback);
-        	});
-        });
+        let db
+        try {
+            db = await new Promise((resolve, reject)=> {
+                MongoClient.connect(this.url + dataBaseName, (err, db) =>{
+            	  assert.equal(null, err);
+            	  console.log("Connected correctly to server");
+                  this.db = db;
+                  resolve(db)
+            	  // action(db, callback);
+            	});
+            });
+        } catch (e) {
+            this.close()
+        } finally {
+
+        }
+
         this.db = db;
         return this;
 
@@ -49,10 +57,10 @@ class Db {
             var collection = this.db.collection(colName);
             // Insert some documents
             collection.updateMany(query, data, (err, result)=> {
+                this.close()
               assert.equal(err, null);
               console.log(`Updated the ${colName} with the ${data}`);
               resolve(result);
-              this.close()
             });
         });
 
@@ -72,11 +80,11 @@ class Db {
         var collection = this.db.collection(colName);
         await new Promise((resolve, reject)=> {
             collection.deleteOne(query, (err, result) =>{
+                this.close()
               assert.equal(err, null);
               // assert.equal(1, result.result.n);
               console.log(`Db: delete  ${result.result.n} from the ${colName} collection`);
               resolve(result)
-              this.close()
             });
         });
 
@@ -89,20 +97,27 @@ class Db {
             return this;
         }
         let db = await this.connect()
-        await new Promise((resolve, reject) =>{
-            console.log(colName, 'data');
-            var collection = this.db.collection(colName);
-            collection.insertMany(data, (err, result) =>{
-                if(err) {
-                    console.log(err);
-                    reject()
-                }else {
-                    console.log(`Db: Inserted  ${data.length} into the ${colName} collection`);
-                    resolve(result);
-                }
-              this.close()
-            });
-        })
+        try {
+            await new Promise((resolve, reject) =>{
+                var collection = this.db.collection(colName);
+                collection.insertMany(data, (err, result) =>{
+
+                    if(err) {
+                        console.log(err);
+                        reject()
+                    }else {
+                        console.log(`Db: Inserted  ${data.length} into the ${colName} collection`);
+                        resolve(result);
+                    }
+
+                });
+            })
+        } catch (e) {
+
+        } finally {
+            this.close()
+        }
+
 
         return this;
     }
@@ -116,20 +131,28 @@ class Db {
         if(!this.db) {
             await this.connect()
         }
+        try {
+            let data = await new Promise((resolve, reject) =>{
+                var collection = this.db.collection(colName);
 
-        let data = await new Promise((resolve, reject) =>{
-            var collection = this.db.collection(colName);
+          	     // Find some documents
+              	  collection.find(query, set).toArray((err, docs)=>{
 
-      	     // Find some documents
-          	  collection.find(query, set).toArray((err, docs)=>{
-          	    assert.equal(err, null);
-          	    console.log("Db: Found the following records");
-                resolve(docs)
-                this.close()
-          	  });
-        });
+              	    assert.equal(err, null);
+              	    console.log("Db: Found the following records");
+                    resolve(docs)
+              	  });
+            });
 
-         return data
+            return data
+        } catch (e) {
+
+        } finally {
+            this.close()
+        }
+
+
+
     }
 }
 
