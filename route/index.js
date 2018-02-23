@@ -6,8 +6,7 @@ const gets = require("./get.json");
 const actionRoutes = require("./actionroutes");
 const fs = require('fs')
 const path = require('path')
-const Db = require('../db/Db.js')
-let db = new Db();
+const mockRoute = require('./middleware/mockRoute.js')
 
 
 router.use(function(req, res, next) {
@@ -20,27 +19,8 @@ router.use(function(req, res, next) {
 
 /**
  * router - 检查数据库是否有响应的mock
- *
- * @param  {type} function(req description
- * @param  {type} res          description
- * @param  {type} next         description
- * @return {type}              description
  */
-router.use(function(req, res, next) {
-    const {method, _parsedUrl} = req;
-    const {pathname} = _parsedUrl;
-
-    db.connect('mqsas').then((db) => {
-        db.find(method, {url:pathname}).then((data) => {
-            console.log(data, 'test');
-            if(data.length){
-                res.send(data[0].data)
-            }else {
-                next()
-            }
-        })
-    })
-});
+router.use(mockRoute);
 
 _.map(actionRoutes, (value, name) => {
     if (value.type === "POST" || value.type === "post") {

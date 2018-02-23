@@ -25,6 +25,7 @@ const config =  {
         vue: 'vue/dist/vue.js',
 		conf: path.join(__dirname, './conf'),
 		components: path.join(__dirname, './components'),
+		db:  path.join(__dirname, './db'),
 		}
     },
     module: {
