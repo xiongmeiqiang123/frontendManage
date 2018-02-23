@@ -9,4 +9,4 @@ let GETModel = new Schema({
     data: { type: String }
 });
 
-module.exports = mongoose.model('get',GETModel);
+module.exports = mongoose.model('POST',GETModel);
