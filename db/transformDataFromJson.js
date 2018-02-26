@@ -6,13 +6,13 @@ const path = require('path')
 
 const mongoose = require('mongoose');
 const config   = require('./config');
-// const GETModel = require('./models/GET.js')
+const GETModel = require('./models/GET.js')
 const POSTModel = require('./models/POST.js')
 mongoose.connect(config.db).then((value) => {
     console.log('mongooose connected！');
 })
 
-_.each(postRoutes, function(value, name) {
+_.each(getRoutes, function(value, name) {
     let dataFormatted;
     try {
         dataFormatted = fs.readFileSync(path.join(__dirname, `../data/${value.data}.json`))
@@ -23,7 +23,7 @@ _.each(postRoutes, function(value, name) {
 
     }
     console.log(dataFormatted);
-    let gets = new POSTModel({
+    let gets = new GETModel({
         url: name,
         data: dataFormatted
     })

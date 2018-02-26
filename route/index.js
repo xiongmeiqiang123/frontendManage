@@ -24,6 +24,7 @@ router.use(function(req, res, next) {
  db.then((value) => {
      router.use(mockRoute);
  }).catch((err) => {
+     console.log(err);
      console.log('mock数据库连接失败', '------------');
  })
 
