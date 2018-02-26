@@ -13,13 +13,15 @@ const Mock = require("mockjs"),
 const router = require("./route");
 const login = require("./actions/login.js");
 const cookieParser = require("cookie-parser");
-require('./db/models')
+
 app.use("/public", express.static("dist"));
 app.use(bodyParser.json({ limit: "1mb" })); //解析post数据
 app.use(cors());
 app.use(cookieParser());
 // app.use(login)
 app.use("/", router);
+
+
 
 // app.use(delay(1, 1000));
 

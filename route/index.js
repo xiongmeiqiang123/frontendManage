@@ -20,7 +20,14 @@ router.use(function(req, res, next) {
 /**
  * router - 检查数据库是否有响应的mock
  */
-router.use(mockRoute);
+ let db = require('../db/models')
+ db.then((value) => {
+     router.use(mockRoute);
+ }).catch((err) => {
+     console.log('mock数据库连接失败', '------------');
+ })
+
+
 
 _.map(actionRoutes, (value, name) => {
     if (value.type === "POST" || value.type === "post") {

@@ -19,15 +19,30 @@ module.exports =  function(req, res, next) {
         return;
     }
     let query = {url:pathname};
-    let get = GETModel.find(query)
-    let post = POSTModel.find(query)
-    Promise.all([get, post]).then(([getData, postData]) => {
-        if(getData.length){
-            res.send(getData[0].data)
-        }else if(postData.length){
-            res.send(postData[0].data)
-        }else {
+    try {
+        console.log(1);
+        let get = GETModel.find(query)
+        console.log(2);
+        let post = POSTModel.find(query)
+        console.log(3);
+        Promise.all([get, post]).then(([getData, postData]) => {
+            console.log(getData, postData);
+            if(getData.length){
+                res.send(JSON.parse(getData[0].data))
+            }else if(postData.length){
+                res.send(JSON.parse(postData[0].data))
+            }else {
+                next()
+            }
+        }).catch((err) => {
+            console.log('test');
             next()
-        }
-    })
+        })
+    } catch (e) {
+        console.log(e);
+        next()
+    } finally {
+
+    }
+
 }
