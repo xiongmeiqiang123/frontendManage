@@ -114,7 +114,13 @@
 			<el-form-item label="msg">
 					<el-input v-model="currentItem.msg" placeholder="msg"></el-input>
 			</el-form-item>
-
+            <el-form-item label="是否是前端接口">
+                <el-switch
+                    v-model="currentItem.isFront"
+                    on-text="前端"
+                    off-text="后端">
+                </el-switch>
+            </el-form-item>
 		</el-form>
         <div style='text-align: center'>
             <el-button @click='isEdit = false; isAdd = false'>取消</el-button>
@@ -243,7 +249,7 @@ export default {
 			})
 		},
 		deleteItem(item) {
-			this.$confirm('确定删除').then(_ => {
+			this.$confirm('确定删除?').then(_ => {
 				api.delete({
 					id: item.id
 				}).then(res => {
@@ -265,7 +271,9 @@ export default {
 		},
         add(){
             this.isAdd = true
-            this.currentItem = {}
+            this.currentItem = {
+                isFront:false
+            }
         },
         submit(){
             let data = Object.assign(this.currentItem)
