@@ -39,9 +39,7 @@ module.exports = function (req, res, next) {
     }
 
     console.log(id, updateData);
-    IpInfo.findOneAndUpdate({
-        __id: id
-    }, updateData).then((value) => {
+    IpInfo.findByIdAndUpdate(id, {$set: updateData}).then((value) => {
         res.send(response.success('test'))
     })
 };
