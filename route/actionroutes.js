@@ -68,8 +68,12 @@ const route = {
 		data: 'ipInfo/createIpInfo',
 		type: 'POST'
 	},
-	'/action/setIpInfo': {
-		data: 'ipInfo/setIpInfo',
+	'/action/updateIpInfo': {
+		data: 'ipInfo/update',
+		type: 'POST'
+	},
+	'/action/deleteIpInfo': {
+		data: 'ipInfo/delete',
 		type: 'POST'
 	}
 }
