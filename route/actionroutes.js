@@ -66,11 +66,11 @@ const route = {
 	},
 	'/action/createIpInfo': {
 		data: 'ipInfo/createIpInfo',
-		type: 'GET'
+		type: 'POST'
 	},
 	'/action/setIpInfo': {
 		data: 'ipInfo/setIpInfo',
-		type: 'GET'
+		type: 'POST'
 	}
 }
 
