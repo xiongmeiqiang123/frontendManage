@@ -12,7 +12,7 @@ module.exports = function (req, res, next) {
         msg
     } = getParamsFromReq(req);
 
-    if(!ip || !key) {
+    if(!ip) {
         res.send(response.fail('缺少参数'))
     }
 

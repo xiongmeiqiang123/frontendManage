@@ -1,8 +1,8 @@
 <template>
 <div id="nginx">
 
-    <div>
-        <el-button @click='add'>
+    <div style="text-align:center">
+        <el-button @click='add' type='primary'>
             新增
         </el-button>
     </div>
@@ -24,8 +24,8 @@
                    <div>
                         <el-button key='scope.row.key'
                         size='small'
-                        v-bind:type="scope.row.key === currentFront ? 'primary' : ''"
-                         @click.native="selectFrontEnd(scope.row.key)">选择</el-button>
+                        v-bind:type="scope.row.id === currentFront ? 'primary' : ''"
+                         @click.native="selectFrontEnd(scope.row.id)">选择</el-button>
 
                          <el-button
                          size='small'
@@ -67,8 +67,8 @@
                    <div>
                         <el-button key='scope.row.key'
                         size='small'
-                        v-bind:type="scope.row.key === current ? 'primary' : ''"
-                         @click.native="createMock(scope.row.key)">选择</el-button>
+                        v-bind:type="scope.row.id === current ? 'primary' : ''"
+                         @click.native="createMock(scope.row.id)">选择</el-button>
 
                          <el-button
                          size='small'
@@ -95,7 +95,7 @@
 
 
 	<el-dialog :visible.sync="isEditOrAdd" title='编辑信息' :show-close='false'>
-		<el-form :inline="true" :model="currentItem" class="demo-form-inline">
+		<el-form :model="currentItem" class="demo-form-inline">
 			<el-form-item label="名称">
 				<el-input v-model="currentItem.name" placeholder="名称"></el-input>
 			</el-form-item>
@@ -103,8 +103,8 @@
 					<el-input v-model="currentItem.key" placeholder="key"></el-input>
 			</el-form-item>
 
-			<el-form-item label="ip">
-					<el-input v-model="currentItem.ip" placeholder="ip"></el-input>
+			<el-form-item label="ip" >
+					<el-input v-model="currentItem.ip" placeholder="填写ip或者域名"></el-input>
 			</el-form-item>
 
 			<el-form-item label="port">
@@ -197,7 +197,7 @@ export default {
 				front: name
 			}).then(res => {
 				if (res.status) {
-					this.currentFront = this.frontIps.filter(item => item.key === name)[0].key;
+					this.currentFront = this.frontIps.filter(item => item.id === name)[0].id;
 					this.$notify({
 						type: 'success',
 						message: '修改成功！'
@@ -216,7 +216,7 @@ export default {
 				mock: name
 			}).then(res => {
 				if (res.status) {
-					this.current = this.backendIps.filter(item => item.key === name)[0].key;
+					this.current = this.backendIps.filter(item => item.id === name)[0].id;
 
 					this.$notify({
 						type: 'success',
@@ -268,6 +268,14 @@ export default {
             this.currentItem = {}
         },
         submit(){
+            let data = Object.assign(this.currentItem)
+            if(!data.ip) {
+                return;
+            }
+            if(data.ip.match('http://(.*)')) {
+                data.ip = data.ip.match('http://(.*)')[1]
+            }
+            console.log(data, 'test');
             if(this.isAdd) {
                 api.add(this.currentItem).then(res=>{
                     if(res.status) {

@@ -4,6 +4,7 @@ var colors = require('../conf/colors')
 var path = require('path')
 let restart = ' nginx -s reload',
 	open = 'nginx'
+const IpInfo = require('../db/models/ipInfo.js')
 
 const ipsConf = require('../conf/ips.js')
 const ips = ipsConf.map((item) => ({[item.key]: item.ip}))
@@ -21,24 +22,7 @@ frontIps.map((item) => {
 	Object.assign(frontIpsMap, item)
 })
 // console.log(ipsMap);
-let servers = [
-	{
-		listen: 80,
-		locations: [
-			{
-				path: '~ ^/(.*).(gif|jpg|png|js|css|html)$',
-				using:'mqsas',
-				type: 'front',
-				proxy_passes: frontIpsMap
-			},{
-				path: '~ ^/(myDeviceCloundNew|mqsas|mqsasdata|mqsasABTest|knowledge|whiteList|mqsasback|test1|myDeviceClound|conf)/',
-				using: 'mqsas',//
-				type: 'mock',
-				proxy_passes: ipsMap
-			}
-		]
-	 }
-]
+
 
 function  assemble(servers=[], data={}) {
 
@@ -86,7 +70,40 @@ function exec(command='say hello') {
 }
 
 exports.route = '/action/rewriteServer'
-module.exports = function rewriteServer(req, res, next) {
+module.exports = async function asyncrewriteServer(req, res, next) {
+
+	let data = await IpInfo.find({});
+
+	const ips = data.filter(item=>!item.isFront).map((item) => ({[item.id]: `http://${item.ip}:${item.port}`}))
+	const frontIps =  data.filter(item=>item.isFront).map((item) => ({[item.id]: `http://${item.ip}:${item.port}`}))
+	console.log(frontIps,'frontIps');
+	let frontIpsMap = {}
+	frontIps.map((item) => {
+		Object.assign(frontIpsMap, item)
+	})
+	let ipsMap = {}
+	ips.map((item) => {
+		Object.assign(ipsMap, item)
+	})
+
+	let servers = [
+		{
+			listen: 80,
+			locations: [
+				{
+					path: '~ ^/(.*).(gif|jpg|png|js|css|html)$',
+					using:'mqsas',
+					type: 'front',
+					proxy_passes: frontIpsMap
+				},{
+					path: '~ ^/(myDeviceCloundNew|mqsas|mqsasdata|mqsasABTest|knowledge|whiteList|mqsasback|test1|myDeviceClound|conf)/',
+					using: 'mqsas',//
+					type: 'mock',
+					proxy_passes: ipsMap
+				}
+			]
+		 }
+	]
 
 	//获取参数
 	let query = req.query;

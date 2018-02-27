@@ -4,7 +4,6 @@ const response = require('../../components/util/response')
 
 module.exports = async function (req, res, next) {
     const {id} = getParamsFromReq(req)
-    console.log(id, '-------id');
     if(!id) {
         res.send(response.fail('缺少id'))
         return ;
