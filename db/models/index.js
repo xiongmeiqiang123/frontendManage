@@ -2,10 +2,7 @@ const mongoose = require('mongoose');
 const config   = require('../config');
 const GETModel = require('./GET.js')
 
-module.exports = mongoose.connect(config.db, {
-    user: 'admin',
-    pass: 'admin'
-}).then((value) => {
+module.exports = mongoose.connect(config.db).then((value) => {
     console.log('mongooose connected！');
 })
 

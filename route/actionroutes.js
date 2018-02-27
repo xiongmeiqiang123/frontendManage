@@ -59,6 +59,18 @@ const route = {
 	'/mqsas/login':{
 		data: 'login',
 		type: 'GET'
+	},
+	'/action/getIpInfos': {
+		data: 'ipInfo/getIpInfos',
+		type: 'GET'
+	},
+	'/action/createIpInfo': {
+		data: 'ipInfo/createIpInfo',
+		type: 'GET'
+	},
+	'/action/setIpInfo': {
+		data: 'ipInfo/setIpInfo',
+		type: 'GET'
 	}
 }
 

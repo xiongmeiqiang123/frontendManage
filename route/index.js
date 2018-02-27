@@ -16,7 +16,6 @@ router.use(function(req, res, next) {
     next();
 });
 
-
 /**
  * router - 检查数据库是否有响应的mock
  */
@@ -36,6 +35,7 @@ _.map(actionRoutes, (value, name) => {
             name,
             function(req, res, next) {
                 const action = require("../actions/" + value.data);
+                console.log(action, 'action');
                 action(req, res, next);
             },
             function(req, res, next) {

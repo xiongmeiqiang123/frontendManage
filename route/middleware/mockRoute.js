@@ -14,19 +14,19 @@ module.exports =  function(req, res, next) {
     const {method, _parsedUrl} = req;
     const {pathname} = _parsedUrl;
 
-    if(pathname.includes('/actions')) {
+    if(pathname.includes('/action')) {
         next();
         return;
     }
     let query = {url:pathname};
     try {
-        console.log(1);
+
         let get = GETModel.find(query)
-        console.log(2);
+
         let post = POSTModel.find(query)
-        console.log(3);
+
         Promise.all([get, post]).then(([getData, postData]) => {
-            console.log(getData, postData);
+
             if(getData.length){
                 res.send(JSON.parse(getData[0].data))
             }else if(postData.length){
@@ -35,7 +35,6 @@ module.exports =  function(req, res, next) {
                 next()
             }
         }).catch((err) => {
-            console.log('test');
             next()
         })
     } catch (e) {
