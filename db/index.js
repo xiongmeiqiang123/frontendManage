@@ -2,9 +2,9 @@ var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
 
 const dataBaseName = 'mockProject'
-// Connection URL 
-var url = 'mongodb://localhost:27017/' + dataBaseName;
-// Use connect method to connect to the Server 
+// Connection URL
+var url = 'mongodb://10.136.140.1:27017/' + dataBaseName;
+// Use connect method to connect to the Server
 
 
 function connectToDb(action=()=>{}, callback=()=>{}){
