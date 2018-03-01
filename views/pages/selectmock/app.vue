@@ -9,81 +9,21 @@
 	<el-row>
 		<el-col :span='11'>
 			<h1 class='title'>前端选择</h1>
-
-			<el-table :data="frontIps" style="width: 100%">
-				<el-table-column prop="name" label="名称" width="180">
-				</el-table-column>
-				<el-table-column prop="key" label="key" width="180">
-				</el-table-column>
-				<el-table-column prop="ip" label="ip">
-				</el-table-column>
-				<el-table-column prop="port" label="端口">
-				</el-table-column>
-				<el-table-column prop="操作" width='200' label="操作">
-					<template slot-scope='scope'>
-                   <div>
-                        <el-button key='scope.row.key'
-                        size='small'
-                        v-bind:type="scope.row.id === currentFront ? 'primary' : ''"
-                         @click.native="selectFrontEnd(scope.row.id)">选择</el-button>
-
-                         <el-button
-                         size='small'
-                         type='danger'
-                          @click.native="deleteItem(scope.row)">删除</el-button>
-
-                          <el-button
-                          size='small'
-                          type='info'
-                           @click.native="editItem(scope.row)">编辑</el-button>
-                   </div>
-               </template>
-				</el-table-column>
-
-			</el-table>
-			<!-- <div class="current">
-            </div>
-            <div class="buttons">
-                <el-tooltip placement="top" v-for="item in frontIps" effect='light'>
-                  <div slot="content"> {{item.ip}}</div>
-                  <el-button key='item.name' v-bind:type="item.key === currentFront ? 'primary' : ''"  @click.native="selectFrontEnd(item.key)">{{item.name}}</el-button>
-                </el-tooltip>
-            </div> -->
+            <mock-table
+                :current='currentFront'
+                :select='selectFrontEnd'
+                :deleteItem='deleteItem'
+                :editItem='editItem'
+                :data='frontIps'></mock-table>
 		</el-col>
 		<el-col :span='11' :offset='2'>
 			<h1 class='title'>mock 服务器选择</h1>
-
-			<el-table :data="backendIps" style="width: 100%">
-				<el-table-column prop="name" label="名称" width="180">
-				</el-table-column>
-				<el-table-column prop="key" label="key" width="180">
-				</el-table-column>
-				<el-table-column prop="ip" label="ip">
-				</el-table-column>
-				<el-table-column prop="port" label="端口">
-				</el-table-column>
-				<el-table-column prop="操作" width='200' label="操作">
-					<template slot-scope='scope'>
-                   <div>
-                        <el-button key='scope.row.key'
-                        size='small'
-                        v-bind:type="scope.row.id === current ? 'primary' : ''"
-                         @click.native="createMock(scope.row.id)">选择</el-button>
-
-                         <el-button
-                         size='small'
-                         type='danger'
-                          @click.native="deleteItem(scope.row)">删除</el-button>
-
-                          <el-button
-                          size='small'
-                          type='info'
-                           @click.native="editItem(scope.row)">编辑</el-button>
-                   </div>
-               </template>
-				</el-table-column>
-
-			</el-table>
+            <mock-table
+                :current='currentFront'
+                :select='createMock'
+                :deleteItem='deleteItem'
+                :editItem='editItem'
+                :data='backendIps'></mock-table>
 			<!-- <div class="buttons">
                 <el-tooltip placement="top" v-for="item in backendIps"  effect='light'>
                   <div slot="content"> {{item.ip}}</div>
@@ -99,10 +39,7 @@
 			<el-form-item label="名称">
 				<el-input v-model="currentItem.name" placeholder="名称"></el-input>
 			</el-form-item>
-			<el-form-item label="key">
-					<el-input v-model="currentItem.key" placeholder="key"></el-input>
-			</el-form-item>
-
+            
 			<el-form-item label="ip" >
 					<el-input v-model="currentItem.ip" placeholder="填写ip或者域名"></el-input>
 			</el-form-item>
@@ -133,7 +70,7 @@
 <script>
 import request from 'superagent'
 import api from './api.js'
-
+import MockTable from './table.vue'
 import {
 	createGETPromise
 } from 'components/request'
@@ -156,6 +93,10 @@ const backendIps = ips
 
 export default {
 	name: 'selectMock',
+    components: {
+        CreateMock,
+        MockTable
+    },
 	data() {
 		return {
 			msg: 'mock 服务器选择',
@@ -194,9 +135,7 @@ export default {
 			//   createGETPromise(item.ip)()
 		})
 	},
-	components: {
-		CreateMock
-	},
+
 	methods: {
 		selectFrontEnd(name) {
 			api.rewriteServer({
@@ -243,11 +182,13 @@ export default {
 				if (res.status) {
 					this.backendIps = res.data.filter((item) => !item.isFront)
 					this.frontIps = res.data.filter((item) => item.isFront)
+
 				} else {
 
 				}
 			})
 		},
+
 		deleteItem(item) {
 			this.$confirm('确定删除?').then(_ => {
 				api.delete({
@@ -283,7 +224,7 @@ export default {
             if(data.ip.match('http://(.*)')) {
                 data.ip = data.ip.match('http://(.*)')[1]
             }
-            console.log(data, 'test');
+
             if(this.isAdd) {
                 api.add(this.currentItem).then(res=>{
                     if(res.status) {
