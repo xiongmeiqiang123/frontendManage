@@ -209,7 +209,7 @@ export default {
 						message: '修改成功！'
 					})
 				} else {
-					this.currentFront = name;
+					// this.currentFront = name;
 					this.$notify({
 						message: '请求出错',
 						duration: 6000
@@ -229,7 +229,7 @@ export default {
 						message: '修改成功！'
 					})
 				} else {
-					this.current = name;
+					// this.current = name;
 					this.$notify({
 						message: '请求出错',
 						duration: 6000
