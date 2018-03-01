@@ -19,7 +19,7 @@
 		<el-col :span='11' :offset='2'>
 			<h1 class='title'>mock 服务器选择</h1>
             <mock-table
-                :current='currentFront'
+                :current='current'
                 :select='createMock'
                 :deleteItem='deleteItem'
                 :editItem='editItem'
@@ -39,7 +39,7 @@
 			<el-form-item label="名称">
 				<el-input v-model="currentItem.name" placeholder="名称"></el-input>
 			</el-form-item>
-            
+
 			<el-form-item label="ip" >
 					<el-input v-model="currentItem.ip" placeholder="填写ip或者域名"></el-input>
 			</el-form-item>
