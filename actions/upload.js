@@ -3,9 +3,7 @@ var shell = require('shelljs');
 var colors = require('../conf/colors');
 var pathes = require('../conf/paths.js');
 var path = require('path');
-function exec(command = 'say hello') {
-    return shell.exec(command).code;
-}
+const {execPromise} = require('../components/util')
 
 module.exports = function uploadCodes(req, res, next) {
     let params = req.body;
@@ -17,12 +15,16 @@ module.exports = function uploadCodes(req, res, next) {
         command = `cd ${pathes.admin} && npm run upload -- ${branch} ${message}`
     }
     console.log('正在执行---', command);
-    let resultCode = exec(command);
+    execPromise(command).then((resultCode) => {
+        if (resultCode !== 0) {
+            res.send({status: false})
+        } else {
+            res.send({status: true})
+        }
+    }).catch((err) => {
+        res.send({status: false, msg: err})
+    })
 
-    if (resultCode !== 0) {
-        res.send({status: false})
-    } else {
-        res.send({status: true})
-    }
+
 
 }
