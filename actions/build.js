@@ -4,6 +4,7 @@ var colors = require("../conf/colors");
 var path = require("path");
 let restart = " nginx -s reload",
     open = "nginx";
+const {execPromise} = require('../components/util')
 
 function exec(command = "say hello") {
     return shell.exec(command).code;
@@ -34,13 +35,18 @@ module.exports = function rewriteServer(req, res, next) {
             } else {
                 command = `${command}-- --env.name ${module} `;
             }
+            console.log(command, 'test');
+            execPromise(command).then((resultCode) => {
+                console.log(resultCode);
+                if (resultCode !== 0) {
+                    res.send({ status: false });
+                } else {
+                    res.send({ status: true });
+                }
+            }).catch((err) => {
+                console.log(err);
+            })
 
-            let resultCode = exec(command);
-            if (resultCode !== 0) {
-                res.send({ status: false });
-            } else {
-                res.send({ status: true });
-            }
         })
         .catch(err => {
             res.send({ status: false });
