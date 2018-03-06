@@ -12,23 +12,27 @@ mongoose.connect(config.db).then((value) => {
     console.log('mongooose connected！');
 })
 
-_.each(getRoutes, function(value, name) {
-    let dataFormatted;
-    try {
-        dataFormatted = fs.readFileSync(path.join(__dirname, `../data/${value.data}.json`))
-    } catch (e) {
-        console.log(e);
-        dataFormatted = '{}'
-    } finally {
+load(getRoutes, GETModel)
+load(postRoutes, POSTModel)
+function load(routes, Model) {
+    _.each(getRoutes, function(value, name) {
+        let dataFormatted;
+        try {
+            dataFormatted = fs.readFileSync(path.join(__dirname, `../data/${value.data}.json`))
+        } catch (e) {
+            console.log(e);
+            dataFormatted = '{}'
+        } finally {
 
-    }
-    console.log(dataFormatted);
-    let gets = new GETModel({
-        url: name,
-        data: dataFormatted
-    })
+        }
+        console.log(dataFormatted);
+        let model = new Model({
+            url: name,
+            data: dataFormatted
+        })
 
-    gets.save().then((value) => {
-        // console.log(value, 'saved');
-    })
-});
+        model.save().then((value) => {
+            // console.log(value, 'saved');
+        })
+    });
+}
