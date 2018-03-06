@@ -123,10 +123,6 @@ module.exports = async function asyncrewriteServer(req, res, next) {
 
 
 		data = Object.assign({}, data, query)
-		fs.writeFile(path.join(__dirname, '../conf/currentData.json'), JSON.stringify(data), function (err, result) {
-
-		})
-
 		let proxy_pass = data.mock;
 		fs.writeFile("server", assemble(servers, data), (err, result)=>{
 			console.log('restart ngix'.error)
@@ -135,6 +131,9 @@ module.exports = async function asyncrewriteServer(req, res, next) {
 				res.send({status: false})
 			}else {
 				res.send({status: true})
+				fs.writeFile(path.join(__dirname, '../conf/currentData.json'), JSON.stringify(data), function (err, result) {
+						
+				})
 			}
 		});
 	})

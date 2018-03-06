@@ -10,6 +10,7 @@
         "mongodb": "^2.2.24",
         "mongoose": "^5.0.6",
         "nodemailer": "^4.0.0",
+        "query-string": "^5.1.0",
         "recharts": "^0.20.1",
         "store": "^2.0.12",
         "superagent": "^3.6.1",

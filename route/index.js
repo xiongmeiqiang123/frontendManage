@@ -27,7 +27,7 @@ router.use(function(req, res, next) {
      console.log('mock数据库连接失败', '------------');
  })
 
-// router.use(checklogin)
+router.use(checklogin)
 
 _.map(actionRoutes, (value, name) => {
     if (value.type === "POST" || value.type === "post") {
@@ -35,7 +35,6 @@ _.map(actionRoutes, (value, name) => {
             name,
             function(req, res, next) {
                 const action = require("../actions/" + value.data);
-                console.log(action, 'action');
                 action(req, res, next);
             },
             function(req, res, next) {

@@ -56,7 +56,7 @@ const route = {
 		data: 'removeGitProject',
 		type: 'GET'
 	},
-	'/mqsas/login':{
+	'/actions/login':{
 		data: 'login',
 		type: 'GET'
 	},
