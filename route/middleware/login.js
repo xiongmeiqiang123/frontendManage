@@ -18,7 +18,7 @@ module.exports = function(req, res, next) {
                     res.status(302).send({status:false})
                 } else if (message[0] === "yes") {
                     req.xiaomi_check = message[1];
-                    res.cookie("xiaomi_check", message[1], { maxAge: 600000 });
+                    res.cookie("xiaomi_check", message[1], { maxAge: 60000000 });
                     next();
                 }
             }else {

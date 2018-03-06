@@ -10,6 +10,7 @@ async function isLogin() {
             service: window.location.origin + window.location.pathname
         })
         if(isLogin) {
+            window.location.search = ''
             return true
         }else {
             return Promise.reject()
