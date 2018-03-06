@@ -11,16 +11,16 @@ const Mock = require("mockjs"),
     expressWs = require("express-ws")(app);
 
 const router = require("./route");
-const login = require("./actions/login.js");
+
 const cookieParser = require("cookie-parser");
 
 app.use("/public", express.static("dist"));
 app.use(bodyParser.json({ limit: "1mb" })); //解析post数据
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(cookieParser());
-// app.use(login)
 app.use("/", router);
+// app.use(login)
 
 
 

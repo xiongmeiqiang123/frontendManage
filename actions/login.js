@@ -1,12 +1,13 @@
 const request = require("request");
-
+const response = require('../components/util/response')
 module.exports = function(req, res, next) {
-    console.log(req.cookies.xiaomi_check,'req.cookies.xiaomi_check');
-    if (req.cookies.xiaomi_check) {
-        return next();
-    }
     const { query = {} } = req;
     const { ticket, service } = query;
+    if(!ticket) {
+        res.send({
+            status: false
+        })
+    }
     request(
         `https://casdev.mioffice.cn/validate?ticket=${ticket}&service=${service}`,
         function(error, response, body) {

@@ -7,8 +7,8 @@ const actionRoutes = require("./actionroutes");
 const fs = require('fs')
 const path = require('path')
 const mockRoute = require('./middleware/mockRoute.js')
-
-
+const checklogin = require("./middleware/login.js");
+const login = require('../actions/login.js')
 router.use(function(req, res, next) {
     console.log("Time:", Date.now());
     console.log("Request URL:", req.originalUrl);
@@ -27,7 +27,7 @@ router.use(function(req, res, next) {
      console.log('mock数据库连接失败', '------------');
  })
 
-
+// router.use(checklogin)
 
 _.map(actionRoutes, (value, name) => {
     if (value.type === "POST" || value.type === "post") {
@@ -55,4 +55,6 @@ _.map(actionRoutes, (value, name) => {
         );
     }
 });
+
+router.post('/actions/login', login)
 module.exports = router;

@@ -12,3 +12,4 @@ new Vue({
   render: h => h(App),
   router: Routers
 })
+console.log('test');
