@@ -9,23 +9,11 @@ const IpInfo = require('../db/models/ipInfo.js')
 const ipsConf = require('../conf/ips.js')
 const ips = ipsConf.map((item) => ({[item.key]: item.ip}))
 
-const frontProjects = require('../conf/frontProjects.js')
-const frontIps =  frontProjects.map((item) => ({[item.key]: item.ip}))
-
-let ipsMap = {}
-ips.map((item) => {
-	Object.assign(ipsMap, item)
-})
-
-let frontIpsMap = {}
-frontIps.map((item) => {
-	Object.assign(frontIpsMap, item)
-})
 // console.log(ipsMap);
 
 
-function  assemble(servers=[], data={}) {
-
+function  assemble(servers=[], data={}, frontIpsMap) {
+	console.log(frontIpsMap,'frontIpsMap');
 	var mock = data.mock || 'mqsas';
 	var front = data.front || 'mqsas';
 
@@ -42,6 +30,11 @@ server {
 
 	proxy_set_header backdoor sys;
 
+	location  /sockjs-node {
+		client_max_body_size    1000m;
+		proxy_read_timeout 10000s;
+		proxy_pass ${frontIpsMap[front]};
+	}
 	${
 		locations.map((location)=>{//locations解析
 			let proxy_passes = location.proxy_passes || {};
@@ -91,12 +84,12 @@ module.exports = async function asyncrewriteServer(req, res, next) {
 			listen: 80,
 			locations: [
 				{
-					path: '~ ^/(.*).(gif|jpg|png|js|css|html)$',
+					path: '~ ^/(.*).(gif|jpg|png|js|css|html|svg)$',
 					using:'mqsas',
 					type: 'front',
 					proxy_passes: frontIpsMap
 				},{
-					path: '~ ^/(myDeviceCloundNew|mqsas|mqsasdata|mqsasABTest|knowledge|whiteList|mqsasback|test1|myDeviceClound|conf)/',
+					path: '/',
 					using: 'mqsas',//
 					type: 'mock',
 					proxy_passes: ipsMap
@@ -124,7 +117,7 @@ module.exports = async function asyncrewriteServer(req, res, next) {
 
 		data = Object.assign({}, data, query)
 		let proxy_pass = data.mock;
-		fs.writeFile("server", assemble(servers, data), (err, result)=>{
+		fs.writeFile("server", assemble(servers, data, frontIpsMap), (err, result)=>{
 			console.log('restart ngix'.error)
 			let resultCode = exec(restart);
 			if(resultCode !== 0) {
@@ -132,7 +125,7 @@ module.exports = async function asyncrewriteServer(req, res, next) {
 			}else {
 				res.send({status: true})
 				fs.writeFile(path.join(__dirname, '../conf/currentData.json'), JSON.stringify(data), function (err, result) {
-						
+
 				})
 			}
 		});
