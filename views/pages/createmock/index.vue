@@ -81,7 +81,7 @@ export default {
                 return;
             }
 
-            request.post('http://mock.sys.miui.com/action/createmock')
+            request.post('/action/createmock')
                 .type('json')
                 .send({
                     type: this.type,
@@ -120,7 +120,7 @@ export default {
             if(!url.trim()) {
                 return;
             }
-            request(type, `http://mock.sys.miui.com${url}`)
+            request(type, `${url}`)
                 .query({
                     url,
                     type
