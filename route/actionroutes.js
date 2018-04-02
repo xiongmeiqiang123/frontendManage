@@ -75,6 +75,10 @@ const route = {
 	'/action/deleteIpInfo': {
 		data: 'ipInfo/delete',
 		type: 'POST'
+	},
+	'/action/projects/get': {
+		data: 'projects/get',
+		type: 'GET'
 	}
 }
 
