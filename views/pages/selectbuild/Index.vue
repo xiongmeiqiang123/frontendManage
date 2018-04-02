@@ -2,56 +2,65 @@
 <div id="build">
 
     <div>
-        <h1  class='title'>miui-sys-front</h1>
-        <h2>选择打包的模块</h2>
 
-        <div class="current">
-            <!-- 当前选择前端工程：{{currentFront}} -->
-        </div>
-        <div class="buttons">
-            <el-select
-                v-model="checkedModules"
-                multiple
-                filterable
-                remote
-                style="width:800px;"
-                reserve-keyword
-                placeholder="请输入关键词"
-                :loading="loading">
-                <el-option
-                  v-for="item in modules"
-                  :key="item"
-                  :label="item"
-                  :value="item">
-                </el-option>
-              </el-select>
+        <el-card   class="project" v-for="project in buildinfos" :key="project.git">
+            <div>
+                log加载时间：{{logTime}}
+            </div>
+            <div   v-if="project.name ==='miui-sys-front-for-build'">
+                <h3 >{{project.name}} -- 开发分支： {{project.devBranch}}</h3>
+                <el-select
+                    v-model="checkedModules"
+                    multiple
+                    filterable
+                    remote
+                    style="width:800px;"
+                    reserve-keyword
+                    placeholder="请输入关键词"
+                    :loading="loading">
+                    <el-option
+                      v-for="item in modules"
+                      :key="item"
+                      :label="item"
+                      :value="item">
+                    </el-option>
+                  </el-select>
 
-            <el-button  :disabled="isBuiding || !checkedModules.length"
-                type='primary'
-                @click.native="selectBuild(checkedModules.join('##'))">打包</el-button>
-        </div>
+                <el-button
+                    :disabled="isBuiding || !checkedModules.length"
+                    type='primary'
+                    :loading="current === project.name"
+                    @click.native="selectBuild(checkedModules.join('##'), project)">构建打包</el-button>
 
-        <div class="buttons">
-            <h1  class='title'>admin</h1>
-            <h2>选择打包的模块</h2>
-            <el-button key='item.name'
-                :loading="current === item"
-                :type="current === item ? 'primary':''"
-                :disabled="isBuiding"
-                @click.native="selectBuild('admin')">admin</el-button>
-        </div>
+            </div >
+
+
+            <div v-if="project.name !=='miui-sys-front-for-build'">
+                <h3  >{{project.name}} -- 开发分支： {{project.devBranch}}</h3>
+                <el-button key='item.name'
+                    :loading="current === project.name"
+                    :disabled="isBuiding"
+                    @click.native="selectBuild('admin', project)">构建打包</el-button>
+
+            </div>
+
+            <div class='gitLogs'>
+                <label for="">当前git log：</label>
+                <el-select :value='project.currentRelease ||　""'  :loading='loadingLog' loading-text='正在加载'>
+                    <el-option v-for="log in logMap[project.name]" :key="log.hash" :label='log.message'></el-option>
+                </el-select>
+            </div>
+        </el-card >
+
     </div>
 
 </div>
 </template>
 
 <script>
-import request from 'superagent'
-import {
-    createPOSTPromise,
-    createGETPromise
-} from 'components/request'
+import api from './api.js'
 import modules from 'conf/modules.js'
+import buildinfos from 'conf/buildinfos'
 
 export default {
     name: 'select-build',
@@ -60,24 +69,54 @@ export default {
             checkedModules:[],
             isBuiding:false,
             modules:[],
-            current: null
+            current: null,
+            buildinfos,
+            loading:false,
+            loadingLog:false,
+            logTime: new Date(),
+            logMap:{
+
+            }
         }
     },
     created() {
-        createGETPromise('/action/getModules')().then(res=>{
+        api.getModules().then(res=>{
             if(res.status) {
                 this.modules = res.data
             }else {
 
             }
         })
+        this.getProjectGitLogs();
+        this.timer =  setInterval(()=>{
+            this.getProjectGitLogs()
+        }, 1000 * 60)
     },
+    destroyed() {
+      //do something after destroying vue instance
+      //
+      console.log('destroying');
+      clearInterval(this.timer)
+  },
     methods: {
-        selectBuild(module){
+        getProjectGitLogs(currentProject){
+            this.loadingLog = true;
+            this.logTime = new Date();
+            this.buildinfos.map(async (item)=>{
+                let data = await api.getProjectGitLogs(item).then((res) => {
+                    if(res.status) {
+                        this.logMap = Object.assign({}, this.logMap, {[item.name]: res.data})
+                        return res.data
+                    }
+                })
+                this.loadingLog = false
+            })
+        },
+        selectBuild(module, project){
             this.isBuiding = true;
-            this.current = module
+            this.current = project.name
             this.$message('正在打包模块－－' + module);
-            createPOSTPromise('/action/build', 'json')({module}).then(res=>{
+            api.build({module, project}).then(res=>{
                 this.isBuiding = false;
                 this.current = null
                 if(res.status) {
@@ -104,5 +143,13 @@ export default {
 
 .current {
     margin: 20px;
+}
+.gitLogs{
+    margin: 10px;
+}
+.project{
+    margin:10px;
+    padding: 10px;
+    border-bottom: solid thin #ebebeb;
 }
 </style>
