@@ -3,7 +3,6 @@ const shell = require('shelljs');
 const colors = require('../conf/colors');
 const pathes = require('../conf/paths.js');
 const path = require('path');
-const buildinfos = require('../conf/buildinfos')
 const {execPromise} = require('../components/util')
 
 module.exports = function uploadCodes(req, res, next) {

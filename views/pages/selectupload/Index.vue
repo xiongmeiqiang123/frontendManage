@@ -28,24 +28,32 @@
 
 <script>
 import request from 'superagent'
+import api from './api.js'
+
 import {
     createGETPromise,
     createPOSTPromise
 } from 'components/request'
-import buildinfos from 'conf/buildinfos'
-const modules = buildinfos.map(i=>i.name)
+// import gitProjects from 'conf/gitProjects'
+// const modules = gitProjects.map(i=>i.name)
 export default {
     name: 'select-upload',
     data() {
         return {
-            modules:modules,
+            modules: [],
             current: null,
             message: '',
             branch: 'master'
         }
     },
     created() {
+        api.getProjects().then(res=>{
+            if(res.status ) {
+                this.modules = res.data.map(i=>i.name)
+            }else {
 
+            }
+        })
     },
     methods: {
         selectBuild(module){

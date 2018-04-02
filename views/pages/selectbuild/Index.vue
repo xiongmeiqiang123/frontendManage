@@ -3,7 +3,7 @@
 
     <div>
 
-        <el-card   class="project" v-for="project in buildinfos" :key="project.git">
+        <el-card   class="project" v-for="project in gitProjects" :key="project.git">
             <div>
                 log加载时间：{{logTime}}
             </div>
@@ -60,7 +60,7 @@
 <script>
 import api from './api.js'
 import modules from 'conf/modules.js'
-import buildinfos from 'conf/buildinfos'
+// import gitProjects from 'conf/gitProjects'
 
 export default {
     name: 'select-build',
@@ -70,7 +70,7 @@ export default {
             isBuiding:false,
             modules:[],
             current: null,
-            buildinfos,
+            gitProjects:[],
             loading:false,
             loadingLog:false,
             logTime: new Date(),
@@ -80,6 +80,14 @@ export default {
         }
     },
     created() {
+        api.getProjects().then(res=>{
+            if(res.status) {
+                this.gitProjects = res.data;
+                this.getProjectGitLogs();
+            }else {
+
+            }
+        })
         api.getModules().then(res=>{
             if(res.status) {
                 this.modules = res.data
@@ -87,7 +95,6 @@ export default {
 
             }
         })
-        this.getProjectGitLogs();
         this.timer =  setInterval(()=>{
             this.getProjectGitLogs()
         }, 1000 * 60)
@@ -102,7 +109,7 @@ export default {
         getProjectGitLogs(currentProject){
             this.loadingLog = true;
             this.logTime = new Date();
-            this.buildinfos.map(async (item)=>{
+            this.gitProjects.map(async (item)=>{
                 let data = await api.getProjectGitLogs(item).then((res) => {
                     if(res.status) {
                         this.logMap = Object.assign({}, this.logMap, {[item.name]: res.data})

@@ -6,9 +6,7 @@ const restart = " nginx -s reload",
     open = "nginx";
 const { execPromise } = require("../components/util");
 const basePath = path.join(__dirname, "../release");
-const buildinfos = require('../conf/buildinfos.json')
 
-console.log(buildinfos,'buildinfos');
 exports.route = "/action/build";
 
 //获取主站的各个模块
