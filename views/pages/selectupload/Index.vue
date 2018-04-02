@@ -32,8 +32,8 @@ import {
     createGETPromise,
     createPOSTPromise
 } from 'components/request'
-const modules = ['miui-sys-front', 'admin']
-
+import buildinfos from 'conf/buildinfos'
+const modules = buildinfos.map(i=>i.name)
 export default {
     name: 'select-upload',
     data() {
@@ -57,7 +57,7 @@ export default {
             }
             this.current = module
             this.$message('正在上传' + module);
-            createPOSTPromise('/action/upload', 'json')({module,message, branch}).then(res=>{
+            createPOSTPromise('/action/upload', 'json')({module, message, branch}).then(res=>{
                 this.current = null
                 if(res.status) {
                     this.$notify({

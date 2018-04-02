@@ -1,9 +1,10 @@
 const path = require('path')
 
- const miuiFront =  path.join(__dirname, '../release/miui-sys-front-for-build')
- const admin =  path.join(__dirname, '../release/mqs-admin-for-build')
- console.log(miuiFront, 'miuiFront------------------------------------');
+function join(dir = '') {
+    return  path.join(__dirname, dir)
+}
 module.exports = {
-    miuiFront,
-    admin
+    'miui-sys-front':  join('../release/miui-sys-front-for-build'),
+    'admin': join('../release/mqs-admin-for-build'),
+    'easyspark': join('../release/easyspark-for-build')
 };

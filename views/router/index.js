@@ -8,7 +8,8 @@ export default new Router({
     {
       path: '/*',
       component: Index,
-      children: PageRoute
+      children: PageRoute,
+      redirect: '/selectmock'
     }
   ]
 })
