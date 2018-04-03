@@ -4,9 +4,7 @@
     <div>
 
         <el-card   class="project" v-for="project in gitProjects" :key="project.git">
-            <div>
-                log加载时间：{{logTime}}
-            </div>
+
             <div   v-if="project.name ==='miui-sys-front-for-build'">
                 <h3 >{{project.name}} -- 开发分支： {{project.devBranch}}</h3>
                 <el-select
@@ -46,9 +44,16 @@
 
             <div class='gitLogs'>
                 <label for="">当前git log：</label>
-                <el-select :value='project.currentRelease ||　""'  :loading='loadingLog' loading-text='正在加载'>
-                    <el-option v-for="log in logMap[project.name]" :key="log.hash" :label='log.message'></el-option>
+                <el-select :value='project.currentRelease ||　""'  :loading='getProjectInfo(project,"loadingLog")' loading-text='正在加载'>
+                    <el-option  v-for="log in (logMap[project.name] && logMap[project.name].data)" :value="log.hash" :label='log.message'></el-option>
                 </el-select>
+                <el-button  :loading='getProjectInfo(project,"loadingLog")'
+                     :disabled='getProjectInfo(project,"loadingLog")'
+                     @click="getProjectGitLogs(project)">获取/刷新</el-button>
+
+                <span>
+                    加载时间：{{ getProjectInfo(project,"logTime") }}
+                </span>
             </div>
         </el-card >
 
@@ -60,6 +65,7 @@
 <script>
 import api from './api.js'
 import modules from 'conf/modules.js'
+import moment from 'moment'
 // import gitProjects from 'conf/gitProjects'
 
 export default {
@@ -83,7 +89,7 @@ export default {
         api.getProjects().then(res=>{
             if(res.status) {
                 this.gitProjects = res.data;
-                this.getProjectGitLogs();
+                // this.getProjectGitLogs();
             }else {
 
             }
@@ -95,9 +101,9 @@ export default {
 
             }
         })
-        this.timer =  setInterval(()=>{
-            this.getProjectGitLogs()
-        }, 1000 * 60)
+        // this.timer =  setInterval(()=>{
+        //     this.getProjectGitLogs()
+        // }, 1000 * 60)
     },
     destroyed() {
       //do something after destroying vue instance
@@ -106,18 +112,19 @@ export default {
       clearInterval(this.timer)
   },
     methods: {
-        getProjectGitLogs(currentProject){
-            this.loadingLog = true;
-            this.logTime = new Date();
-            this.gitProjects.map(async (item)=>{
-                let data = await api.getProjectGitLogs(item).then((res) => {
-                    if(res.status) {
-                        this.logMap = Object.assign({}, this.logMap, {[item.name]: res.data})
-                        return res.data
-                    }
-                })
-                this.loadingLog = false
+        async getProjectGitLogs (currentProject ={}){
+            this.logMap = Object.assign({}, this.logMap, {[currentProject.name]: {data: [], loadingLog:true}})
+            const logTime = moment().format('YYYY/MM/DD HH:MM:SS');
+            let data = await api.getProjectGitLogs(currentProject).then((res) => {
+                if(res.status) {
+                    this.logMap = Object.assign({}, this.logMap, {[currentProject.name]: {data: res.data,  logTime, loadingLog:false}})
+                    return res.data
+                }
             })
+            // this.loadingLog = false
+        },
+        getProjectInfo(project = {}, name){
+            return this.logMap[project.name] && this.logMap[project.name][name]
         },
         selectBuild(module, project){
             this.isBuiding = true;

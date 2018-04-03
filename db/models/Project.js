@@ -12,6 +12,9 @@ let Project = new Schema({
     devBranch: {
         type: String,
         default: 'master'
+    },
+    modules: {
+        type: Array
     }
 
 });
