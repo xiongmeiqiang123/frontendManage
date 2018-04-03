@@ -64,6 +64,10 @@ const route = {
 		data: 'ipInfo/getIpInfos',
 		type: 'GET'
 	},
+	'/action/ping': {
+		data: 'ipInfo/ping',
+		type: 'GET'
+	},
 	'/action/createIpInfo': {
 		data: 'ipInfo/createIpInfo',
 		type: 'POST'

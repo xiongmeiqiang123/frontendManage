@@ -7,7 +7,7 @@
               <template slot-scope='scope'>
                   <div :style='`color:${scope.row.status?"green":"red" }`' >
                       {{
-                          scope.row.status ? '成功':'未连接'
+                          scope.row.status === undefined ? '' : scope.row.status ? '成功':'未连接'
                       }}
                   </div>
               </template>
@@ -22,7 +22,7 @@
                   <el-button key='scope.row.key'
                   size='small'
                   v-bind:type="scope.row.id === current ? 'primary' : ''"
-                   @click.native="select(scope.row.id)">选择</el-button>
+                   @click.native="select(scope.row)">选择</el-button>
 
                    <el-button
                    size='small'

@@ -13,7 +13,6 @@ const ips = ipsConf.map((item) => ({[item.key]: item.ip}))
 
 
 function  assemble(servers=[], data={}, frontIpsMap) {
-	console.log(frontIpsMap,'frontIpsMap');
 	var mock = data.mock || 'mqsas';
 	var front = data.front || 'mqsas';
 

@@ -137,31 +137,45 @@ export default {
 	},
 
 	methods: {
-		selectFrontEnd(name) {
+		selectFrontEnd(data ={}) {
+            const {id: id} = data;
 			api.rewriteServer({
-				front: name
+				front: id
 			}).then(res => {
 				if (res.status) {
-					this.currentFront = this.frontIps.filter(item => item.id === name)[0].id;
+					this.currentFront = this.frontIps.filter(item => item.id === id)[0].id;
 					this.$notify({
 						type: 'success',
 						message: '修改成功！'
 					})
 				} else {
-					// this.currentFront = name;
+					// this.currentFront = id;
 					this.$notify({
 						message: '请求出错',
 						duration: 6000
 					});
 				}
 			})
+
+            api.ping(data).then(res=>{
+                if(res.status) {
+                    this.frontIps.filter(item => item.id === id)[0].status = true
+                }else {
+                    this.frontIps.filter(item => item.id === id)[0].status = false
+                }
+                this.frontIps = [...this.frontIps]
+            }).catch((err) => {
+
+            })
 		},
-		createMock(name) {
+
+		createMock(data = {}) {
+            const {id: id} = data;
 			api.rewriteServer({
-				mock: name
+				mock: id
 			}).then(res => {
 				if (res.status) {
-					this.current = this.backendIps.filter(item => item.id === name)[0].id;
+					this.current = this.backendIps.filter(item => item.id === id)[0].id;
 
 					this.$notify({
 						type: 'success',
@@ -175,6 +189,16 @@ export default {
 					});
 				}
 			})
+            api.ping(data).then(res=>{
+                if(res.status) {
+                    this.backendIps.filter(item => item.id === id)[0].status = true
+                }else {
+                    this.backendIps.filter(item => item.id === id)[0].status = false
+                }
+                this.backendIps = [...this.backendIps]
+            }).catch((err) => {
+
+            })
 		},
 		getList() {
 			//do something after creating vue instance

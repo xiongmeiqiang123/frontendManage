@@ -7,4 +7,5 @@ export default {
     add: createPOSTPromise('/action/createIpInfo'),
     getCurrentInfo: createGETPromise('/action/getCurrentInfo'),
     rewriteServer: createGETPromise('/action/rewriteServer'),
+    ping: createGETPromise('/action/ping')
 }
