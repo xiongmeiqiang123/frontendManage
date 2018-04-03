@@ -79,7 +79,11 @@ const route = {
 	'/action/projects/get': {
 		data: 'projects/get',
 		type: 'GET'
-	}
+	},
+	'/action/projects/update': {
+		data: 'projects/updateById',
+		type: 'POST'
+	},
 }
 
 module.exports = route;

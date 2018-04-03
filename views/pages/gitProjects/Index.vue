@@ -1,5 +1,18 @@
 <template>
   <div id="">
+
+      <el-table :data='projects' style='margin:10px;'>
+        <el-table-column prop='name' label='项目名称'>
+        </el-table-column>
+        <el-table-column prop='git' label='git地址'>
+        </el-table-column>
+        <el-table-column prop='devBranch' label='开发分支'>
+        </el-table-column>
+        <el-table-column prop='currentRelease' label='当前发布hash'>
+        </el-table-column>
+      </el-table>
+
+
       <label for="">项目：</label>
     <el-select v-model="project">
         <el-option v-for="elem in projects" :key="elem.name" :label='elem.name' :value='elem.git'></el-option>
@@ -9,6 +22,11 @@
     <br>
     <br>
     <label for="">日志：</label>
+    <!-- <div >
+      <el-steps direction="vertical" :active="1">
+        <el-step   :description="`${log.author_name} : ${log.date}` " :title="log.message" v-for="log in logs" :key="log.hash"></el-step>
+      </el-steps>
+    </div> -->
     <el-select v-model="currentComit">
         <el-option v-for="elem in logs" :key="elem.hash" :label='elem.message' :value='elem.hash'></el-option>
     </el-select>
@@ -47,7 +65,7 @@ export default {
     }
   },
   methods: {
-          getProjectGitLogs(currentProject){
+          getProjectGitLogs(currentProject) {
               api.getProjectGitLogs(currentProject).then(res=>{
                   if(res.status) {
                       this.isShowInitBtn = false
@@ -85,7 +103,7 @@ export default {
 
             api.release(currentProject).then(res=>{
                 if(res.status) {
-                    
+
                 }else {
 
                 }
