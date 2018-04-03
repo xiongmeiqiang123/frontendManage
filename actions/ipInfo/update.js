@@ -38,8 +38,7 @@ module.exports = function (req, res, next) {
         updateData.msg = msg;
     }
 
-    console.log(id, updateData);
     IpInfo.findByIdAndUpdate(id, {$set: updateData}).then((value) => {
-        res.send(response.success('test'))
+        res.send(response.success('更新成功'))
     })
 };

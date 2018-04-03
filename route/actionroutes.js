@@ -84,6 +84,10 @@ const route = {
 		data: 'projects/get',
 		type: 'GET'
 	},
+	'/action/pvcount': {
+		data: 'pvcount',
+		type: 'GET'
+	},
 	'/action/projects/update': {
 		data: 'projects/updateById',
 		type: 'POST'
