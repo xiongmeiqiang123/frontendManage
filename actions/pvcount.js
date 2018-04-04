@@ -22,7 +22,8 @@ module.exports = async function(req, res, next) {
             await Pv.findOneAndUpdate(
                 { url, name },
                 {
-                    count: _data.count + 1
+                    count: _data.count + 1,
+                    time: new Date()
                 }
             );
         } else {
