@@ -3,12 +3,10 @@ const Schema = mongoose.Schema;
 
 let Pv = new Schema({
     url:{
-        type: String,
-        unique: true
+        type: String
     },
-    names: {
-        type: String,
-        default: []
+    name: {
+        type: String
     },
     time: {
         type: String
