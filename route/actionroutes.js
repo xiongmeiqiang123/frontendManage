@@ -90,7 +90,8 @@ const route = {
 	},
 	'/action/getPvs': {
 		data: 'pv/index',
-		type: 'GET'
+		type: 'GET',
+		api: true
 	},
 	'/action/projects/update': {
 		data: 'projects/updateById',
