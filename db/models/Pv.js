@@ -8,7 +8,7 @@ let Pv = new Schema({
     name: {
         type: String
     },
-    time: {
+    date: {
         type: String
     },
     count: {

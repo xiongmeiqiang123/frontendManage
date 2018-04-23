@@ -42,6 +42,7 @@ module.exports = function rewriteServer(req, res, next) {
                     }
                 })
                 .catch(err => {
+                    res.send({ status: false });
                     console.log(err);
                 });
         })

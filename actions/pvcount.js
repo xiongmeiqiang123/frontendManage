@@ -7,13 +7,14 @@ module.exports = async function(req, res, next) {
     if(!url || !name) {
         return res.send(response.fail('缺少参数'))
     }
+    let date = (new Date()).toDateString()
     let pv = new Pv({
         url,
         name,
-        time: new Date()
+        date
     });
 
-    let data = await Pv.find({ url, name });
+    let data = await Pv.find({ url, name , date});
 
 
     try {
@@ -24,9 +25,6 @@ module.exports = async function(req, res, next) {
                 {
                     $inc: {
                         count:1
-                    },
-                    $set: {
-                        time: new Date()
                     }
                 }
             );
