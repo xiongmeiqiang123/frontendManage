@@ -43,7 +43,7 @@ export default {
             modules: [],
             current: null,
             message: '',
-            branch: 'master'
+            branch: 'dev'
         }
     },
     created() {

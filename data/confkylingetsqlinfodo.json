@@ -1,1 +1,0 @@
-{"status":"true","data":"select model,version,pkn,sum(count) from mqsas_ltime_result where model in (%%model%%) and version in (%%version%%) group by model,version order by model,version desc limit 20"}
