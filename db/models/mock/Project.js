@@ -7,4 +7,4 @@ let ＭockProject = new Schema({
     desc: { type: String }
 });
 
-module.exports = mongoose.model("ＭockProject", ＭockProject);
+module.exports = mongoose.model("mockProject", ＭockProject);

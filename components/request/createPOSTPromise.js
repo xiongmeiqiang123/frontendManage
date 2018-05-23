@@ -3,7 +3,7 @@ import notification from '../note'
 import {errorHandle} from './index.js'
 // import postErrot from '@@/log'
 
- export default function createPOSTPromise(url='/mqsas/test1', contentType='form', necessaryQuerys={}) {
+ export default function createPOSTPromise(url='/mqsas/test1', necessaryQuerys={}) {
     function post(body={},query={}){
         return new Promise((resolve, reject)=>{
             let isWrong = false;
@@ -21,7 +21,7 @@ import {errorHandle} from './index.js'
                 request.post(url)
                     .send(body)
                     .query(query)
-                    .type(contentType)
+                    .type('json')
                     .end((err, res)=>{
                         // hideLoading()
                         if(err){

@@ -1,10 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let Url = new Schema({
+let MockUrl = new Schema({
     url: { type: String },
     type: { type: String },
     note: { type: String },
+    pages: [{
+        type: Schema.Types.ObjectId,
+        ref: 'mockPage'
+    }],
     query: [
         {
             keys: [
@@ -24,4 +28,4 @@ let Url = new Schema({
     lastUpdater: String
 });
 
-module.exports = mongoose.model("Url", Url);
+module.exports = mongoose.model("mockUrl", MockUrl);

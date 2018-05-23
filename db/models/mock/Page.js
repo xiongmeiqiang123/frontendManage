@@ -1,16 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let Page = new Schema({
+let MockPage = new Schema({
     url: { type: String },
     name: { type: String },
     note: { type: String },
-    apis: [
-        {
-            urlId: Schema.Types.ObjectId,
-            ref: "url"
-        }
-    ],
     query: [
         {
             keys: [
@@ -32,4 +26,4 @@ let Page = new Schema({
     }]
 });
 
-module.exports = mongoose.model("Page", Page);
+module.exports = mongoose.model("mockPage", MockPage);
