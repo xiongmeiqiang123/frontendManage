@@ -1,23 +1,25 @@
 const request = require("request");
 const response = require("../components/util/response");
 const Pv = require("../db/models/Pv.js");
+const moment = require('moment')
+
 const { getParamsFromReq } = require("../components/util");
+
+const MONTH_FORMAT = 'YYYY-MM'
 module.exports = async function(req, res, next) {
     const { url, name } = getParamsFromReq(req);
     if(!url || !name) {
         return res.send(response.fail('缺少参数'))
     }
-    let date = (new Date()).toDateString()
+    let date = moment().format(MONTH_FORMAT)
     let pv = new Pv({
         url,
         name,
         date
     });
-
-    let data = await Pv.find({ url, name , date});
-
-
+    
     try {
+        let data = await Pv.find({ url, name , date});
         if (data.length) {
             let _data = data[0];
             await Pv.findOneAndUpdate(

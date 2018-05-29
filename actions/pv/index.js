@@ -2,13 +2,15 @@ const Pv = require("../../db/models/Pv.js");
 const { getParamsFromReq } = require("../../components/util/index.js");
 const response = require("../../components/util/response");
 const _ = require("lodash");
-module.exports = async function(req, res, next) {
-    const { url, name, type  } = getParamsFromReq(req);
+const monent = require('moment')
 
-    let data = await Pv.find({}, { __v: false }).catch(err => {
+const MONTH_FORMAT = 'YYYY-MM'
+module.exports = async function(req, res, next) {
+    const { url, name, type , date = monent().format(MONTH_FORMAT) } = getParamsFromReq(req);
+
+    let data = await Pv.find({ date }, { __v: false }).catch(err => {
         return [];
     });
-    console.log(type, 'type');
     switch (type) {
         case '0':
             data = data.reduce((result, next) => {
