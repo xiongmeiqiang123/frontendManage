@@ -5,6 +5,7 @@ const path = require('path')
 module.exports = function (name, branchName = 'master') {
 
     const gitPath = path.join(__dirname, `${basePath}/${name}`)
+    console.log(`cd ${gitPath} && git checkout ${branchName} && git pull`,"`cd ${gitPath} && git checkout ${branchName} && git pull`");
     shell.exec(`cd ${gitPath} && git checkout ${branchName} && git pull`);
 
     return new Promise((resolve, reject)=>{

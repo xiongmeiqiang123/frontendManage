@@ -9,6 +9,14 @@ if (!fs.existsSync(basePath)){
 }
 
 module.exports = function (name, git) {
-    const commend = `cd ${basePath} && git clone ${git} ${name} && cd ${name} && sh shell/unzip.sh`
-    return shell.exec(commend).code
+    const commend1 = `cd ${basePath} && rm -rf ${name} && git clone ${git} ${name} && cd ${name} && npm install`
+    const commend = `cd ${basePath} && rm -rf ${name} && git clone ${git} ${name} && cd ${name} && sh shell/unzip.sh`
+    let code1 = shell.exec(commend1).code;
+
+    console.log(code1,'code1');
+    if(code1 === 0) {
+        return code1
+    }else {
+        return shell.exec(commend).code
+    }
 }
