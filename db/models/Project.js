@@ -15,6 +15,10 @@ let Project = new Schema({
     },
     modules: {
         type: Array
+    },
+    defaultReleaseBranch: {
+        type: String,
+        default: 'master'
     }
 
 });

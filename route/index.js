@@ -13,45 +13,52 @@ router.use(function(req, res, next) {
     console.log('Request Type:', req.method);
     next();
 });
+let db = require('../db/models')
 
-/**
- * router - 检查数据库是否有响应的mock
- */
- let db = require('../db/models')
- db.then((value) => {
-     router.use(mockRoute);
- }).catch((err) => {
-     console.log(err);
-     console.log('mock数据库连接失败', '------------');
- })
+async function init() {
 
-router.use(checklogin)
+    /**
+     * router - 检查数据库是否有响应的mock
+     */
 
-_.map(actionRoutes, (value, name) => {
-    if (value.type === "POST" || value.type === "post") {
-        router.post(
-            name,
-            function(req, res, next) {
-                const action = require("../actions/" + value.data);
-                action(req, res, next);
-            },
-            function(req, res, next) {
-                // console.log(req, 'next')
-            }
-        );
-    } else {
-        router.get(
-            name,
-            function(req, res, next) {
-                const action = require("../actions/" + value.data);
-                action(req, res, next);
-            },
-            function(req, res, next) {
-                // console.log(req, 'next')
-            }
-        );
-    }
-});
+     await db.then((value) => {
+         router.use(mockRoute);
+     }).catch((err) => {
+         console.log(err);
+         console.log('mock数据库连接失败', '------------');
+     })
 
-router.post('/actions/login', login)
+    router.use(checklogin)
+
+    _.map(actionRoutes, (value, name) => {
+        if (value.type === "POST" || value.type === "post") {
+            router.post(
+                name,
+                function(req, res, next) {
+                    const action = require("../actions/" + value.data);
+                    action(req, res, next);
+                },
+                function(req, res, next) {
+                    // console.log(req, 'next')
+                }
+            );
+        } else {
+            router.get(
+                name,
+                function(req, res, next) {
+                    const action = require("../actions/" + value.data);
+                    action(req, res, next);
+                },
+                function(req, res, next) {
+                    // console.log(req, 'next')
+                }
+            );
+        }
+    });
+
+    router.post('/actions/login', login)
+}
+
+init();
+
 module.exports = router;
