@@ -14,7 +14,12 @@ let Pv = new Schema({
     count: {
         type: Number,
         default: 1
-    }
+    },
+    menu: [{
+        id: String,
+        parentId: String,
+        title: String
+    }]
 });
 
 module.exports = mongoose.model('Pv',Pv);

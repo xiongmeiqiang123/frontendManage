@@ -7,7 +7,7 @@ const { getParamsFromReq } = require("../components/util");
 
 const MONTH_FORMAT = 'YYYY-MM'
 module.exports = async function(req, res, next) {
-    const { url, name } = getParamsFromReq(req);
+    const { url, name, menu=[] } = getParamsFromReq(req);
     if(!url || !name) {
         return res.send(response.fail('缺少参数'))
     }
@@ -15,7 +15,8 @@ module.exports = async function(req, res, next) {
     let pv = new Pv({
         url,
         name,
-        date
+        date,
+        menu
     });
     
     try {
