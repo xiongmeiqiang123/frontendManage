@@ -2,7 +2,10 @@
 <div id="build">
 
     <div>
-
+        <h2 v-if='isLastSuccessed !== undefined' :style='isLastSuccessed? "color: green;" :"color: red;"'>
+            上次打包结果：　{{ isLastSuccessed === true ? '成功':"失败" }}
+            <div>时间：　{{lastBuildTime}}</div>
+        </h2>
         <el-card   class="project" v-for="project in gitProjects" :key="project.git">
 
             <div   v-if="project.name ==='miui-sys-front-for-build'">
@@ -72,6 +75,7 @@ export default {
     name: 'select-build',
     data() {
         return {
+            isLastSuccessed: undefined,
             checkedModules:[],
             isBuiding:false,
             modules:[],
@@ -79,6 +83,7 @@ export default {
             gitProjects:[],
             loading:false,
             loadingLog:false,
+            lastBuildTime: new Date(),
             logTime: new Date(),
             logMap:{
 
@@ -138,12 +143,21 @@ export default {
                         type: 'success',
                         message: '打包成功！'
                     })
+                    this.isLastSuccessed = true
+                    this.lastBuildTime = new Date()
+                    console.log('打包成功！',　module)
                 }else {
                     this.$notify({
                         type: 'error',
                         message: '失败'
                     })
+                    this.isLastSuccessed = false
+                    this.lastBuildTime = new Date()
+                    console.error('打包失败', module)
                 }
+            }).catch(e=>{
+                this.isLastSuccessed = true
+                    this.lastBuildTime = new Date()
             })
         }
     }
