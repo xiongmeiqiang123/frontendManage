@@ -86,7 +86,7 @@ const route = {
 	},
 	'/action/pvcount': {
 		data: 'pvcount',
-		type: 'GET'
+		type: 'POST'
 	},
 	'/action/getPvs': {
 		data: 'pv/index',
