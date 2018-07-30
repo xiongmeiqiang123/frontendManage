@@ -32,10 +32,6 @@ const route = {
 		data: 'getModules',
 		type:'GET'
 	},
-	'/action/createGitProject':{
-		data: 'createGitProject',
-		type:'GET'
-	},
 	'/action/upload':{
 		data: 'upload',
 		type:'POST'

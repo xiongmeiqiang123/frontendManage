@@ -1,13 +1,1 @@
-[{
-    "git": "git@git.n.xiaomi.com:xiongmeiqiang/miui-sys.git",
-    "name": "miui-sys-front-for-build",
-    "devBranch": "develop"
-}, {
-    "git": "git@git.n.xiaomi.com:xiongmeiqiang/mqs-admin.git",
-    "name": "mqs-admin-for-build",
-    "devBranch": "master"
-}, {
-    "git": "git@git.n.xiaomi.com:xiongmeiqiang/easyspark.git",
-    "name": "easyspark-for-build",
-    "devBranch": "master"
-}]
+[]

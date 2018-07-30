@@ -12,7 +12,7 @@ let transporter = nodemailer.createTransport({
 
 // setup email data with unicode symbols
 let mailOptions = {
-    from: '"Fred Foo 👻" <xiongmeiqiang@xiaomi.com>', // sender address
+    from: '"Fred Foo 👻" <xiongmeiqiang123@gmail.com>', // sender address
     to: '805238497@qq.com', // list of receivers
     subject: 'Hello ✔', // Subject line
     text: 'Hello world ?', // plain text body

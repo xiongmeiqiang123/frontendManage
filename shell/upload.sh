@@ -29,4 +29,4 @@ git push origin $branch:refs/for/$branch
 echo 'successed'
 
 # 打开git 页面
-google-chrome http://git.xiaomi.com:8088/#/dashboard/self
+google-chrome #/dashboard/self
