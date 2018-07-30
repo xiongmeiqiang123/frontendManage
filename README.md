@@ -8,7 +8,7 @@ Node / Express / MongoDb / Nginx / VueJs / PM2 / MockJs
 2. 同时当数据接口切到本地的时候，使用本地存储的数据来进行mock
 
 ## 项目初始化
-* `clone git@git.n.xiaomi.com:xiongmeiqiang/mock.git`
+* `clone git@**`
 * 进入项目执行　`npm install`
 * 安装 nginx https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-14-04-lts
 

@@ -56,7 +56,6 @@ function errorHandle(err, res = {}, callback = f => f) {
         if (window.noPermission) {
             return;
         }
-        window.alert('请发邮件至 yuanhao@xiaomi.com 开通访问权限！');
         window.noPermission = true;
         window.location.href = '/mqsas/index.html';
         postErrot('No Permisstion')
@@ -65,7 +64,6 @@ function errorHandle(err, res = {}, callback = f => f) {
     }
 
     if (res.status === stateCode.NOAUTH) {
-        notification('error', '没有操作权限，如有问题，请发邮件至 yuanhao@xiaomi.com')
         postErrot('No Permisstion')
         // throw Error('No Permisstion')
         return;
