@@ -69,6 +69,7 @@ module.exports = async function asyncrewriteServer(req, res, next) {
 	const ips = data.filter(item=>!item.isFront).map((item) => ({[item.id]: `http://${item.ip}:${item.port}`}))
 	const frontIps =  data.filter(item=>item.isFront).map((item) => ({[item.id]: `http://${item.ip}:${item.port}`}))
 	console.log(frontIps,'frontIps');
+	console.log(ips,'ips');
 	let frontIpsMap = {}
 	frontIps.map((item) => {
 		Object.assign(frontIpsMap, item)
@@ -115,6 +116,7 @@ module.exports = async function asyncrewriteServer(req, res, next) {
 
 
 		data = Object.assign({}, data, query)
+		fs.writeFile(path.join(__dirname, '../conf/currentData.json'), JSON.stringify(data), function (err, result) {})
 		let proxy_pass = data.mock;
 		fs.writeFile("server", assemble(servers, data, frontIpsMap), (err, result)=>{
 			console.log('restart ngix'.error)
@@ -123,9 +125,7 @@ module.exports = async function asyncrewriteServer(req, res, next) {
 				res.send({status: false})
 			}else {
 				res.send({status: true})
-				fs.writeFile(path.join(__dirname, '../conf/currentData.json'), JSON.stringify(data), function (err, result) {
 
-				})
 			}
 		});
 	})
