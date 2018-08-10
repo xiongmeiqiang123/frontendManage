@@ -27,6 +27,6 @@ http {
 
 
 ## 启动项目
-* 启动 nginx ： sudo nginx
+* 启动 nginx ：  nginx
 * 启动 mongod   ： mongod --port 27017 (默认端口)
 * 启动 mock 服务器：项目根目录执行 `npm start`，正常启动后访问 http://localhost:3001/public/index.html 检验

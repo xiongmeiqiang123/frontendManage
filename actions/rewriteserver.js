@@ -4,6 +4,7 @@ var colors = require('../conf/colors')
 var path = require('path')
 let restart = ' nginx -s reload',
 	open = 'nginx'
+	var Base64 = require('js-base64').Base64;
 const IpInfo = require('../db/models/ipInfo.js')
 
 const ipsConf = require('../conf/ips.js')
@@ -58,7 +59,7 @@ server {
 }
 
 function exec(command='say hello') {
-	return shell.exec(command).code;
+	return shell.exec(command)
 }
 
 exports.route = '/action/rewriteServer'
@@ -116,13 +117,18 @@ module.exports = async function asyncrewriteServer(req, res, next) {
 
 
 		data = Object.assign({}, data, query)
+		if(!query.pwd) {
+			return res.send({status: false, msg: '需要sudo权限'})
+		}
+		let pwd = Base64.decode(query.pwd)
 		fs.writeFile(path.join(__dirname, '../conf/currentData.json'), JSON.stringify(data), function (err, result) {})
 		let proxy_pass = data.mock;
-		fs.writeFile("server", assemble(servers, data, frontIpsMap), (err, result)=>{
-			console.log('restart ngix'.error)
-			let resultCode = exec(restart);
-			if(resultCode !== 0) {
-				res.send({status: false})
+		fs.writeFile("server", assemble(servers, data, frontIpsMap), (err)=>{
+			console.log('restart ngix'.error);
+			let result = exec(`echo ${pwd} | sudo -S  nginx -s reload`);
+			if(result.code !== 0) {
+				console.log('restart ngix'.error, result)
+				res.send({status: false, msg: result})
 			}else {
 				res.send({status: true})
 
