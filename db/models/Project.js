@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 let Project = new Schema({
     git: {
-        type: String
+        type: String,
+        required: true
     },
     name: { type: String },
     currentRelease: {
@@ -14,11 +15,15 @@ let Project = new Schema({
         default: 'master'
     },
     modules: {
-        type: Array
+        type: Array,
+        
     },
     defaultReleaseBranch: {
         type: String,
         default: 'master'
+    },
+    note: {
+        type: String
     }
 
 });
