@@ -30,11 +30,7 @@ server {
 
 	proxy_set_header backdoor sys;
 
-	location  /sockjs-node {
-		client_max_body_size    1000m;
-		proxy_read_timeout 10000s;
-		proxy_pass ${frontIpsMap[front]};
-	}
+	
 	${
 		locations.map((location)=>{//locations解析
 			let proxy_passes = location.proxy_passes || {};
@@ -79,23 +75,27 @@ module.exports = async function asyncrewriteServer(req, res, next) {
 	ips.map((item) => {
 		Object.assign(ipsMap, item)
 	})
-
+	let locations = []
+	if(frontIps.length) {
+		locations.push({
+			path: '~ ^/(.*).(gif|jpg|png|js|css|html|svg)$',
+			using:'mqsas',
+			type: 'front',
+			proxy_passes: frontIpsMap
+		})
+	}
+	if(ips.length) {
+		locations.push({
+			path: '/',
+			using: 'mqsas',//
+			type: 'mock',
+			proxy_passes: ipsMap
+		})
+	}
 	let servers = [
 		{
 			listen: 80,
-			locations: [
-				{
-					path: '~ ^/(.*).(gif|jpg|png|js|css|html|svg)$',
-					using:'mqsas',
-					type: 'front',
-					proxy_passes: frontIpsMap
-				},{
-					path: '/',
-					using: 'mqsas',//
-					type: 'mock',
-					proxy_passes: ipsMap
-				}
-			]
+			locations: locations
 		 }
 	]
 
@@ -112,9 +112,6 @@ module.exports = async function asyncrewriteServer(req, res, next) {
 		} finally {
 
 		}
-		var front = data.front || 'mqsas';
-		var mock = data.mock || 'mqsas';
-
 
 		data = Object.assign({}, data, query)
 		if(!query.pwd) {
@@ -122,13 +119,12 @@ module.exports = async function asyncrewriteServer(req, res, next) {
 		}
 		let pwd = Base64.decode(query.pwd)
 		fs.writeFile(path.join(__dirname, '../conf/currentData.json'), JSON.stringify(data), function (err, result) {})
-		let proxy_pass = data.mock;
 		fs.writeFile("server", assemble(servers, data, frontIpsMap), (err)=>{
 			console.log('restart ngix'.error);
 			let result = exec(`echo ${pwd} | sudo -S  nginx -s reload`);
 			if(result.code !== 0) {
 				console.log('restart ngix'.error, result)
-				res.send({status: false, msg: result})
+				res.send({status: false, msg: result.stderr})
 			}else {
 				res.send({status: true})
 
