@@ -120,10 +120,12 @@ module.exports = async function asyncrewriteServer(req, res, next) {
 		let pwd = Base64.decode(query.pwd)
 		fs.writeFile(path.join(__dirname, '../conf/currentData.json'), JSON.stringify(data), function (err, result) {})
 		fs.writeFile("server", assemble(servers, data, frontIpsMap), (err)=>{
-			console.log('restart ngix'.error);
+			console.log('restart nginx'.error, 'pwd', pwd);
 			let result = exec(`echo ${pwd} | sudo -S  nginx -s reload`);
+			console.log(result);
+			
 			if(result.code !== 0) {
-				console.log('restart ngix'.error, result)
+				console.log('restart nginx'.error, result)
 				res.send({status: false, msg: result.stderr})
 			}else {
 				res.send({status: true})

@@ -1,7 +1,6 @@
 const fs = require('fs');
 const shell = require('shelljs');
 const colors = require('../conf/colors');
-const pathes = require('../conf/paths.js');
 const path = require('path');
 const {execPromise} = require('../components/util')
 
