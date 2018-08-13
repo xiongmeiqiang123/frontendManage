@@ -11,19 +11,21 @@
       </el-table-column>
       <el-table-column prop='currentRelease' label='当前发布hash'>
       </el-table-column>
+      <el-table-column prop='modules' label='当前发布hash'>
+      </el-table-column>
       <el-table-column prop="操作" width='200' label="操作">
         <template slot-scope='scope'>
-                                   <div>
-                                         <el-button
-                                         size='small'
-                                         type='danger'
-                                          @click.native="deleteItem(scope.row)">删除</el-button>
-                      
-                                          <el-button
-                                          size='small'
-                                          type='info'
-                                           @click.native="editItem(scope.row)">编辑</el-button>
-                                   </div>
+                                     <div>
+                                           <el-button
+                                           size='small'
+                                           type='danger'
+                                            @click.native="deleteItem(scope.row)">删除</el-button>
+                        
+                                            <el-button
+                                            size='small'
+                                            type='info'
+                                             @click.native="editItem(scope.row)">编辑</el-button>
+                                     </div>
 </template>
           </el-table-column>
       </el-table>
@@ -33,8 +35,10 @@
     <el-select v-model="project">
         <el-option v-for="elem in projects" :key="elem.name" :label='elem.name' :value='elem.git'></el-option>
     </el-select>
-    <el-button v-show="isShowInitBtn" type='primary' @click='initProject' :disabled='isInit'>初始化该项目</el-button>
-    <el-button v-show="logs.length && project" type='danger' @click='removeGitProject'>删除项目</el-button>
+    <el-tooltip class="item" effect="dark" content="如果在有网环境下可以使用npm install. 如果是无外网环境的线上服务器，可以先在本地将node_modules目录打包生成node.tar.gz，　然后上传到git上" placement="top-start">
+    <el-button type='primary' @click='initProject' :disabled='isInit'>npm install</el-button>
+    </el-tooltip>
+    <el-button v-show="logs.length && project" type='danger' @click='removeGitProject'>删除目录</el-button>
     <br>
     <br>
     <label for="">日志：</label>
@@ -61,7 +65,19 @@
 					<el-input v-model="currentItem.port" placeholder="开发分支，默认为 master"></el-input>
 			</el-form-item>
 
-			<el-form-item label="note">
+			<el-form-item label="模块">
+        <el-tag
+        v-for="(tag, index) in currentItem.modules"
+        :key="tag"
+        @close="handleClose(tag, index)"
+        closable
+        type='info'>
+        {{tag}}
+      </el-tag>
+  	      <el-input v-model="tempTag" placeholder="modules"　style="width: 40%;"　@keyup.enter.native="handleInputConfirm"></el-input>
+            <el-button @click='handleInputConfirm'>添加</el-button>
+			</el-form-item>
+      	<el-form-item label="note">
 					<el-input v-model="currentItem.msg" placeholder="note"></el-input>
 			</el-form-item>
 		</el-form>
@@ -89,7 +105,10 @@ export default {
     isInit: false,
     isAdd: false,
     isEdit: false,
-    currentItem: {}
+    currentItem: {
+      modules: []
+    },
+    tempTag: ""
   }),
   computed: {
     currentProject(test) {
@@ -255,6 +274,19 @@ export default {
           });
         }
       });
+    },
+    handleInputConfirm() {
+      if (this.currentItem.modules.indexOf(this.tempTag) !== -1) {
+        return this.$notify({
+          type: "warnning",
+          message: "已经存在该模块"
+        });
+      }
+      this.currentItem.modules.push(this.tempTag);
+      this.tempTag = "";
+    },
+    handleClose(tag, index) {
+      this.currentItem.modules.splice(index, 1);
     }
   },
   created() {

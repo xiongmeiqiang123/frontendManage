@@ -1,6 +1,7 @@
-const folderPath = '/home/mi/workspace/miui-sys-front/src/modules';
-const fs = require('fs');
 const path = require('path')
+const folderPath = path.join(__dirname, '../release/')
+
+const fs = require('fs');
 
 
 module.exports = function rewriteServer(req, res, next) {
