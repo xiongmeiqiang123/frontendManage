@@ -81,7 +81,7 @@ module.exports = async function asyncrewriteServer(req, res, next) {
 
 	let servers = [
 		{
-			listen: 80,
+			listen: 8080,
 			locations: [
 				{
 					path: '~ ^/(.*).(gif|jpg|png|js|css|html|svg)$',
