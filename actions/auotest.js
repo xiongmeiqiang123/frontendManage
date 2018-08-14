@@ -38,7 +38,7 @@ function writeFile(json={}){
 
 function generatePromise(data) {
 	return new Promise(function(resolve, reject){
-		requst(data.type || 'GET', 'http://admin.sec.miui.com'+ data.url)
+		requst(data.type || 'GET',  data.url)
 			.query(data.params)
 			.send(data.params)
 			.end(function(err, res){

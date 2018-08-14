@@ -4,6 +4,7 @@ var colors = require('../conf/colors')
 var path = require('path')
 let restart = ' nginx -s reload',
 	open = 'nginx'
+	var Base64 = require('js-base64').Base64;
 const IpInfo = require('../db/models/ipInfo.js')
 
 const ipsConf = require('../conf/ips.js')
@@ -29,11 +30,7 @@ server {
 
 	proxy_set_header backdoor sys;
 
-	location  /sockjs-node {
-		client_max_body_size    1000m;
-		proxy_read_timeout 10000s;
-		proxy_pass ${frontIpsMap[front]};
-	}
+	
 	${
 		locations.map((location)=>{//locations解析
 			let proxy_passes = location.proxy_passes || {};
@@ -58,7 +55,7 @@ server {
 }
 
 function exec(command='say hello') {
-	return shell.exec(command).code;
+	return shell.exec(command)
 }
 
 exports.route = '/action/rewriteServer'
@@ -78,23 +75,27 @@ module.exports = async function asyncrewriteServer(req, res, next) {
 	ips.map((item) => {
 		Object.assign(ipsMap, item)
 	})
-
+	let locations = []
+	if(frontIps.length) {
+		locations.push({
+			path: '~ ^/(.*).(gif|jpg|png|js|css|html|svg)$',
+			using:'mqsas',
+			type: 'front',
+			proxy_passes: frontIpsMap
+		})
+	}
+	if(ips.length) {
+		locations.push({
+			path: '/',
+			using: 'mqsas',//
+			type: 'mock',
+			proxy_passes: ipsMap
+		})
+	}
 	let servers = [
 		{
-			listen: 8080,
-			locations: [
-				{
-					path: '~ ^/(.*).(gif|jpg|png|js|css|html|svg)$',
-					using:'mqsas',
-					type: 'front',
-					proxy_passes: frontIpsMap
-				},{
-					path: '/',
-					using: 'mqsas',//
-					type: 'mock',
-					proxy_passes: ipsMap
-				}
-			]
+			listen: 80,
+			locations: locations
 		 }
 	]
 
@@ -111,18 +112,21 @@ module.exports = async function asyncrewriteServer(req, res, next) {
 		} finally {
 
 		}
-		var front = data.front || 'mqsas';
-		var mock = data.mock || 'mqsas';
-
 
 		data = Object.assign({}, data, query)
+		if(!query.pwd) {
+			return res.send({status: false, msg: '需要sudo权限'})
+		}
+		let pwd = Base64.decode(query.pwd)
 		fs.writeFile(path.join(__dirname, '../conf/currentData.json'), JSON.stringify(data), function (err, result) {})
-		let proxy_pass = data.mock;
-		fs.writeFile("server", assemble(servers, data, frontIpsMap), (err, result)=>{
-			console.log('restart ngix'.error)
-			let resultCode = exec(restart);
-			if(resultCode !== 0) {
-				res.send({status: false})
+		fs.writeFile("server", assemble(servers, data, frontIpsMap), (err)=>{
+			console.log('restart nginx'.error, 'pwd', pwd);
+			let result = exec(`echo ${pwd} | sudo -S  nginx -s reload`);
+			console.log(result);
+			
+			if(result.code !== 0) {
+				console.log('restart nginx'.error, result)
+				res.send({status: false, msg: result.stderr})
 			}else {
 				res.send({status: true})
 

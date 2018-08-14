@@ -93,6 +93,14 @@ const route = {
 		data: 'projects/updateById',
 		type: 'POST'
 	},
+	'/action/projects/remove': {
+		data: 'projects/delete',
+		type: 'POST'
+	},
+	'/action/projects/add': {
+		data: 'projects/add',
+		type: 'POST'
+	},
 }
 
 module.exports = route;

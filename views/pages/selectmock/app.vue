@@ -2,6 +2,9 @@
 <div id="nginx">
 
     <div style="text-align:center">
+		<el-input v-model="pwd" type="password" placeholder="请输入机器sudo的密码" style='width: 200px;'>
+            
+        </el-input>
         <el-button @click='add' type='primary'>
             新增
         </el-button>
@@ -71,6 +74,7 @@
 import request from 'superagent'
 import api from './api.js'
 import MockTable from './table.vue'
+import { Base64 } from 'js-base64';
 import {
 	createGETPromise
 } from 'components/request'
@@ -83,6 +87,7 @@ const ips = ipsConf.map((item) => ({
 }))
 
 import frontProjects from 'conf/frontProjects.js'
+import { log } from 'util';
 const frontIps = frontProjects.map((item) => ({
 	value: item.key,
 	name: item.name,
@@ -107,7 +112,8 @@ export default {
 			selected: 'test',
 			currentItem: {},
 			isEdit: false,
-			isAdd: false
+			isAdd: false,
+			pwd: ''
 		}
 	},
     computed:{
@@ -126,7 +132,7 @@ export default {
 				this.currentFront = data.front;
 			} else {
 				this.$notify({
-					message: '请求出错',
+					message: res.msg || '请求出错',
 					duration: 6000
 				});
 			}
@@ -140,7 +146,8 @@ export default {
 		selectFrontEnd(data ={}) {
             const {id: id} = data;
 			api.rewriteServer({
-				front: id
+				front: id,
+				pwd: Base64.encode(this.pwd)
 			}).then(res => {
 				if (res.status) {
 					this.currentFront = this.frontIps.filter(item => item.id === id)[0].id;
@@ -151,7 +158,7 @@ export default {
 				} else {
 					// this.currentFront = id;
 					this.$notify({
-						message: '请求出错',
+						message: res.msg || '请求出错',
 						duration: 6000
 					});
 				}
@@ -170,9 +177,12 @@ export default {
 		},
 
 		createMock(data = {}) {
-            const {id: id} = data;
+			const {id: id} = data;
+			console.log(this, 'test');
+			
 			api.rewriteServer({
-				mock: id
+				mock: id,
+				pwd: Base64.encode(this.pwd)
 			}).then(res => {
 				if (res.status) {
 					this.current = this.backendIps.filter(item => item.id === id)[0].id;
@@ -184,7 +194,7 @@ export default {
 				} else {
 					// this.current = name;
 					this.$notify({
-						message: '请求出错',
+						message: res.msg || '请求出错',
 						duration: 6000
 					});
 				}

@@ -8,9 +8,9 @@ if (!fs.existsSync(basePath)){
     fs.mkdirSync(basePath)
 }
 
-module.exports = function (name, git) {
-    const commend1 = `cd ${basePath} && rm -rf ${name} && git clone ${git} ${name} && cd ${name} && npm install`
-    const commend = `cd ${basePath} && rm -rf ${name} && git clone ${git} ${name} && cd ${name} && sh shell/unzip.sh`
+module.exports = function (name, git, branch = 'master') {
+    const commend1 = `cd ${basePath} && rm -rf ${name} && git clone ${git} ${name} && cd ${name} && git checkout ${branch} && npm install`
+    const commend = `cd ${basePath} && rm -rf ${name} && git clone ${git} ${name} && cd ${name} && git checkout ${branch} && sh shell/unzip.sh`
     let code1 = shell.exec(commend1).code;
 
     console.log(code1,'code1');

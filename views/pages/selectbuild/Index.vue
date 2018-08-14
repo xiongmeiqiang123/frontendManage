@@ -20,7 +20,7 @@
                     placeholder="请输入关键词"
                     :loading="loading">
                     <el-option
-                      v-for="item in modules"
+                      v-for="item in project.modules"
                       :key="item"
                       :label="item"
                       :value="item">

@@ -5,5 +5,8 @@ export default {
     getProjects: createGETPromise('/action/projects/get'),
     initProject: createGETPromise('/action/initProject'),
     removeGitProject: createGETPromise('/action/removeGitProject'),
-    release: createGETPromise('/action/release')
+    release: createGETPromise('/action/release'),
+    add: createPOSTPromise('/action/projects/add'),
+    remove: createPOSTPromise('/action/projects/remove'),
+    update: createPOSTPromise('/action/projects/update'),
 }

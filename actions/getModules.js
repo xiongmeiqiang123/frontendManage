@@ -1,10 +1,11 @@
-const folderPath = '../release/miui-sys-front-for-build/src/modules';
-const fs = require('fs');
 const path = require('path')
+const folderPath = path.join(__dirname, '../release/')
+
+const fs = require('fs');
 
 
 module.exports = function rewriteServer(req, res, next) {
-    fs.readdir(path.join(__dirname, folderPath), (err, files) => {
+    fs.readdir(folderPath, (err, files) => {
         if(err) {
             res.send({status: false})
             return;
