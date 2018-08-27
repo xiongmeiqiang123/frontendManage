@@ -10,7 +10,7 @@ const basePath = path.join(__dirname, "../release");
 exports.route = "/action/build";
 
 //获取主站的各个模块
-const sysFilePath = `${basePath}/miui-sys-front-for-build/src/modules`;
+const sysFilePath = `${basePath}/for-build/src/modules`;
 const filesPromise = new Promise(function(resolve, reject) {
     fs.readdir(sysFilePath, (err, files) => {
         if (err) {

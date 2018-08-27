@@ -8,7 +8,7 @@
         </h2>
         <el-card   class="project" v-for="project in gitProjects" :key="project.git">
 
-            <div   v-if="project.name ==='miui-sys-front-for-build'">
+            <div   v-if="project.name ==='for-build'">
                 <h3 >{{project.name}} -- 开发分支： {{project.devBranch}}</h3>
                 <el-select
                     v-model="checkedModules"
@@ -36,7 +36,7 @@
             </div >
 
 
-            <div v-if="project.name !=='miui-sys-front-for-build'">
+            <div v-if="project.name !=='for-build'">
                 <h3  >{{project.name}} -- 开发分支： {{project.devBranch}}</h3>
                 <el-button key='item.name'
                     :loading="current === project.name"
